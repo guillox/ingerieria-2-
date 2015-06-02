@@ -1,0 +1,132 @@
+body
+{
+	background-color: red;
+	border-style: solid;
+    border-width: auto;
+    border-height:auto;
+    border-bottom: 50px;
+}
+
+h1.titulo{
+	
+	position: absolute;
+	top:5px;
+	left: 50%;
+
+
+}
+.contenedorlogo{
+	
+	width:100px;/* ancho */
+	height:100px;/* alto */
+	margin:0px auto;/* margen */
+	}
+
+.imagenlogo
+	{
+	position: absolute;/* posicion absoluta */
+	background: url("imagenes/logo.png");
+	width: 100px;/* ancho */
+	height: 80px;/* alto */
+	top: 15px;/* superior */
+	 
+  	left: 10px;
+	animation: flotadoimagen ease 2s infinite;
+	
+  	
+}
+
+	}
+
+@keyframes flotadoimagen { 50% { top: 50px; } 100% { top: 0px; } }
+
+.sombralogo{
+	position: absolute;/* posicion relativa */
+	left: 10px;
+	height:16px;/* alto */
+	background: #999;/* imagen de fondo */
+	opacity:0.1; /* opacidad*/
+	border-radius:100%;
+	margin:0px 0px 0px 0px;/*top margin right margin bottom margin left margin*/
+	top:100px;/* superior */
+	animation: comportsombra ease 2s infinite;
+}
+
+/* margin: 25px 50px 75px 100px;
+top margin is 25px
+right margin is 50px
+bottom margin is 75px
+left margin is 100px */
+@keyframes comportsombra { 50% { margin:0px 20% 0px 20%; opacity:0.7; } 100% { margin:0px 0px 0px 0px; opacity:0.1;  } }
+
+.iniciarSesion{
+	font:18px Arial, Helvetica, sans-serif;
+	font-family: arial;
+	text-decoration:none; 
+ 	text-align:center; 
+ 	position: absolute;
+ 	padding:0px 0px; 
+ 	top:15px;
+ 	right: 120px;
+ 	border:solid 1px #004F72; 
+ 	
+ 	-webkit-border-radius:4px;
+ 	-moz-border-radius:4px; 
+ 	border-radius: 4px; 
+ 	
+ 	font-weight:auto;
+ 	color:black; 
+ 	background-color:gray; 
+ 	
+
+ 	
+ 	-webkit-box-shadow: 0px 0px 2px #bababa, inset 0px 0px 1px #ffffff; 
+ 	-moz-box-shadow: 0px 0px 2px #bababa,  inset 0px 0px 1px #ffffff;  
+ 	box-shadow: 0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;  
+} 
+
+.registrase{
+	font:18px Arial, Helvetica, sans-serif;
+	font-family: arial;
+	text-decoration:none; 
+ 	text-align:center; 
+ 	width: auto;
+ 	padding: 0px 0px;
+ 	position: absolute;
+ 	top:15px;
+ 	right: 20px;
+
+ 	border:solid 1px #004F72;
+ 	-webkit-border-radius:4px;
+ 	-moz-border-radius:4px; 
+ 	border-radius: 4px; 
+
+ 	font-weight:auto;
+ 	color:black; 
+ 	background-color:gray; 
+
+}
+
+.ayuda{
+	position: absolute;
+ 	top:15px;
+ 	right: 250px;
+
+}
+.piedepagina{
+	position:absolute;
+	bottom:5px;
+	width:100%;
+	
+	
+}
+
+p.texto1{
+	text-align: center;
+	
+}
+
+p.texto2{
+	text-align:right;
+	
+}
