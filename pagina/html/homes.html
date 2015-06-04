@@ -1,16 +1,31 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+	<meta charset="UTF-8">
 	<title>Subastas Bestnid</title>
-	<link rel="stylesheet" type="text/css" href="estilos.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/menu.css">
+	
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	<!-- <script src="javascript/jquery-1.11.3.min.js"></script>-->
+	<!--<script src="javascript/menu.js"></script>-->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	
+	
 
 </head>
 <body>
 	<!-- Encabezado de pagina-->
-	<header>
+	<header class="cabecera col-xs-12 col-sm-6 col-md-8 col-lg-12">
 		<div class="contenedorlogo">
-			<div class="imagenlogo"> </div>
+			<div class="imagenlogo"> 
+				<img src="imagenes/logo.png">
+			</div>
 			<div class="sombralogo"> </div>
 		</div>
 			
@@ -21,31 +36,172 @@
 	
 		</div>
 			<a href="#" class="ayuda"> Ayuda </a>
-			<a href="#"  class="iniciarSesion">Iniciar sesion</a>
-			<a href="#"  class="registrase">registrarse</a>
-		</div>
+			
+			<div class="container">
+				<button type="button" href class="btn btn-default botoni" data-toggle="modal" data-target="#miventana">
+					Iniciar sesion
+				</button>
+				
+				
 
+				<div class="modal fade" id="miventana">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button class="salirx" type="button" close="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title tituloi">Iniciar Sesion</h4>
+								<form class="form-horizontal" role="form">
+  									<div class="form-group">
+    									<label for="ejemplo_email_3" class="col-lg-2 control-label">Email</label>
+    									<div class="col-lg-10">
+      										<input type="email" class="form-control" id="ejemplo_email_3"placeholder="email@ejemplo.com">
+    									</div>
+    									<div class="col-lg-10">
+      
+  									</div>
+  									<div class="form-group">
+    									<label for="ejemplo_password_3" class="col-lg-2 control-label">Contraseña</label>
+    									<div class="col-lg-10">
+      										<input type="password" class="form-control" id="ejemplo_password_3" placeholder="Contraseña">
+    									</div>
+  									</div>
+  									<div class="form-group">
+    									<div class="col-lg-offset-2 col-lg-10">
+      										<div class="checkbox">
+        										<label>
+          											<input type="checkbox"> No cerrar sesión
+        										</label>
+      										</div>
+    									</div>
+  									</div>
+  									<div class="form-group">
+    									<div class="col-lg-offset-2 col-lg-10">
+      										<button type="submit" class="btn btn-default">Entrar</button>
+    									</div>
+  									</div>
+								</form>
+							</div>
+							<div class="modal-body"></div>
+							<div class="modal-footer">
+								<a class="btn btn-block btn-social btn-facebook">
+    								<i class="fa fa-facebook"></i> Ingrese con facebook
+  								</a>
+								<button type="button" class="btn btn-primary" data-dismiss="modal">cerrar</button>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+			
+
+			<!-- <a href="#" class="iniciarSesion">Iniciar sesion</a> -->
+			
+			<!-- Indica una acción exitosa o positiva -->
+			<button type="button" class="btn btn-success botonr">Registrarse</button>
+			<!-- <a href="#" class="registrase">registrarse</a>-->
+
+		</div>
+		<nav> 
+			<ul class="nav nav-pills">
+					<li role="menuinicio" class="active"><a href="#">Inicio</a></li>
+					<li role="menucategoria"><a href="categoria.html">Categoria</a></li>
+					<li role="menuayuda"><a href="ayuda.html">Ayuda</a></li>
+					<li role="menucontacto"><a href="contacto.html">Contacto</a></li>
+			</ul>
+		</nav>
+
+		<!--buscador-->
+		<div class="row buscar">
+  			<div class="col-lg-6">
+	    		<div class="input-group">
+	      			<input type="text" class="form-control" placeholder="Buscar">
+	      			<span class="input-group-btn">
+	        			<button class="btn btn-default" type="button">Buscar</button>
+	      			</span>
+	    		</div><!-- /input-group -->
+	  		</div><!-- /.col-lg-6 -->
+		</div><!-- /.row -->
 		
+		<!-- 
+		<div class="menu_bar">
+			<a href="#" class="bt-menu"><span class="icon-list2"></span>Menú</a>
+		</div>
+ 
+		<nav>
+			<ul>
+				<li><a href="#"><span class="icon-house"></span>Inicio</a></li>
+				<li><a href="#"><span class="icon-suitcase"></span>Trabajos</a></li>
+				<li class="submenu">
+					<a href="#"><span class="icon-rocket"></span>Proyectos<span class="caret icon-arrow-down6"></span></a>
+					<ul class="children">
+						<li><a href="#">SubElemento #1 <span class="icon-dot"></span></a></li>
+						<li><a href="#">SubElemento #2 <span class="icon-dot"></span></a></li>
+						<li><a href="#">SubElemento #3 <span class="icon-dot"></span></a></li>
+					</ul>
+				</li>
+				<li><a href="#"><span class="icon-earth"></span>Servicios</a></li>
+				<li><a href="#"><span class="icon-mail"></span>Contacto</a></li>
+			</ul>
+		</nav>
+		-->
 
 	</header>
 	<!-- menu de navegacion -->
-	<nav> </nav>
+	
 
 	<!-- Zona de informacion izquierda -->
-	<article> </article>
+	<article class="subasta col-xs-12 col-sm-6 col-md-8 col-lg-9">
+		<ul class="media-list">
+  			<li class="media col-lg-7">
+    			<div class="media-left">
+      				<a href="#">
+        				<img class="media-object" src="balon2014.jpg" alt="deporte" width="42" height="42">
+
+      				</a>
+    			</div>
+    			<div class="media-body col-lg-3">
+      				<h4 class="media-heading">Esta es la pelota del mundial de brasil 2014
+      				</h4><br>
+      				
+    			</div>
+    			<div class="media-left">
+      				<a href="#">
+        				<img class="media-object" src="pelota2010.jpg" alt="deporte" width="42" height="42">
+
+      				</a>
+    			</div>
+    			<div class="media-body">
+      				<h4 class="media-heading">Esta es la pelota del mundial de brasil 2010
+      				</h4><br>
+      				
+    			</div>
+
+  			</li>
+		</ul>
+	<img class="img-responsive" src="pelota.jpg" alt="pelota" width="460" height="345"> 	
+	 </article>
 	
 	<!-- Zona de informacion izquierda -->
 	<aside>  </aside>
 
 	<!-- Pie de pagina -->
 	<footer class="piedepagina">
-		<p class="texto1">datos de la pagina</p>
-		<p class="texto2">datos de la empresa</p>
+		<p class="texto1">Todos los derechos reservados-2015</p>
+		<p class="texto2">Grupo45
+			<img class="logoemp" src="logoempresa.png">
+
+			<img class="imggit" src="github.png">
+			<a href="https://github.com/guillox/ingerieria-2-/wiki">Visita nuestro git!</a>
+
+		</p>
 
 		
 	</footer>
-
-
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	
+	
 
 </body>
+
 </html>
