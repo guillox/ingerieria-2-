@@ -123,6 +123,14 @@ left margin is 100px */
 	bottom:5px;
 	width:100%;
 	font-size: 15px;
+
+	border: 5px solid black;
+  	background-image: -webkit-gradient(linear,left top,right bottom,color-stop(0.29, #000000),color-stop(1, #FF0011));
+	background-image: -o-linear-gradient(right bottom, #000000 29%, #FF0011 100%);
+	background-image: -moz-linear-gradient(right bottom, #000000 29%, #FF0011 100%);
+	background-image: -webkit-linear-gradient(right bottom, #000000 29%, #FF0011 100%);
+	background-image: -ms-linear-gradient(right bottom, #000000 29%, #FF0011 100%);
+	background-image: linear-gradient(to right bottom, #000000 29%, #FF0011 100%);
 	
 	
 }
@@ -153,7 +161,7 @@ p.texto2{
 
 h1.titulo{
 	position: absolute;
-	font-family: 'Open Sans Condensed', sans-serif;
+	font-family: 'Smythe';
 	font-size: 50px;
 	top: 0.2%;
   	left: 40%;
@@ -182,8 +190,8 @@ h1.titulo{
   }
  
 .subasta{
-	background-color: black;
-	border: 5px solid #DE0036;
+	background-color: gray;
+	border: 2px solid #DE0036;
 	width: 100%;
 	height:50%;
 	top:80%;
@@ -191,6 +199,10 @@ h1.titulo{
 	
 
 
+}
+
+section{
+	background-color: red;
 }
 
 img.logoemp{
@@ -208,3 +220,80 @@ img.imggit{
 	text-align: center;
 
 }
+
+@media (min-width: 768px) {
+    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+    }
+}
+
+.omb_login .omb_authTitle {
+    text-align: center;
+	line-height: 300%;
+}
+	
+.omb_login .omb_socialButtons a {
+	color: white; // In yourUse @body-bg 
+	opacity:0.9;
+}
+.omb_login .omb_socialButtons a:hover {
+    color: white;
+	opacity:1;    	
+}
+.omb_login .omb_socialButtons .omb_btn-facebook {background: #3b5998;}
+.omb_login .omb_socialButtons .omb_btn-twitter {background: #00aced;}
+.omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
+
+
+.omb_login .omb_loginOr {
+	position: relative;
+	font-size: 1.5em;
+	color: #aaa;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+.omb_login .omb_loginOr .omb_hrOr {
+	background-color: #cdcdcd;
+	height: 1px;
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+}
+.omb_login .omb_loginOr .omb_spanOr {
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: -0.6em;
+	margin-left: -1.5em;
+	background-color: white;
+	width: 3em;
+	text-align: center;
+}			
+
+.omb_login .omb_loginForm .input-group.i {
+	width: 2em;
+}
+.omb_login .omb_loginForm  .help-block {
+    color: red;
+}
+
+	
+@media (min-width: 768px) {
+    .omb_login .omb_forgotPwd {
+        text-align: right;
+		margin-top:10px;
+ 	}
+
+@font-face {
+ 	font-family: "Smythe";
+	font-style: normal;
+	font-weight: normal;
+	src: local("?"), url("/fuentes/Smythe-Regular.woff") format("woff"), url("/fuentes/Smythe-Regular.ttf") format("truetype");
+
+}
+
+.bmenu{
+	background-color: black;
+}
+		
