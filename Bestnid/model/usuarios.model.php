@@ -57,10 +57,10 @@ class UsuarioModel
 		try 
 		{
 			$stm = $this->pdo
-			          ->prepare("SELECT * FROM clientes WHERE usuario = ? AND pasw = ?");
+			          ->prepare("SELECT * FROM clientes WHERE usuario = ? OR email = ? AND pasw = ?");
 			          
 
-			$stm->execute(array($usuario,$pasw));
+			$stm->execute(array($usuario,$usuario,$pasw));
 			$r = $stm->fetch(PDO::FETCH_OBJ);
 			if($r) {
 				$usr = new Usuario();
@@ -85,7 +85,26 @@ class UsuarioModel
 			die($e->getMessage());
 		}
 	}
-	
+	public function existeUsuario($usuario)
+	{
+		try 
+		{
+			$stm = $this->pdo
+			          ->prepare("SELECT * FROM clientes WHERE usuario = ? ");      
+
+			$stm->execute(array($usuario));
+			$r = $stm->fetch(PDO::FETCH_OBJ);
+			if($r) {
+				return true;		
+			}else {
+				return false;
+			}
+		}
+		 catch (Exception $e) 
+		{
+			die($e->getMessage());
+		}
+	}
 		public function obtenerPorID($id)
 	{
 		try 
@@ -138,7 +157,6 @@ class UsuarioModel
 	{
 		try 
 		{
-		printf("entre");
 		print_r($data);
 		$sql = "INSERT INTO clientes (nombre,apellido,email,fecha_nac,fecha_registro,nro_tarjeta,pasw,usuario) 
 		        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
