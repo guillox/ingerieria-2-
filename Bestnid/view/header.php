@@ -1,16 +1,54 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Subastas Bestnid</title>
+	<title>Subastas Bestnid <?php if(isset($_REQUEST['titulo'])){
+		echo - $_REQUEST['titulo'];} ?></title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<!-- <link rel="stylesheet" type="text/css" href="view/css/menu.css"> -->
 	
 	<link rel="stylesheet" type="text/css" href="view/css/estilos.css">
 	
 	<link rel="stylesheet" href="view/css/bootstrap.min.css">
-
+		<script src="view/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript">
+$(document).ready(function(){
+                         
+      var consulta;
+             
+      //hacemos focus
+      $("#usuario").focus();
+                                                 
+      //comprobamos si se pulsa una tecla
+      $("#usuario").keyup(function(e){
+             //obtenemos el texto introducido en el campo
+             consulta = $("#usuario").val();
+                                      
+             //hace la búsqueda
+             $("#resultado").delay(1000).queue(function(n) {      
+                                           
+                  $("#resultado").html('<img src="ajax-loader.gif" />');
+                                           
+                        $.ajax({
+                              type: "POST",
+                              url: "/db/validarUsuarioDB.php",
+                              data: "b="+consulta,
+                              dataType: "html",
+                              error: function(){
+                                    alert("error petición ajax");
+                              },
+                              success: function(data){                                                      
+                                    $("#resultado").html(data);
+                                    n();
+                              }
+                  });
+                                           
+             });
+                                
+      });
+                          
+});
+</script>
 </head>
 
 <body>
@@ -43,7 +81,7 @@
 			    							<form class="omb_loginForm" action="?c=usuario&a=loguear" autocomplete="off" method="POST">
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-user"></i></span>
-													<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Correo">
+													<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Correo ó Usuario">
 												</div>
 												<span class="help-block"></span>
 												<div class="input-group">
@@ -106,13 +144,13 @@
 			</div>
 		</div>
 		<a href="?c=usuario&a=registroVista" class="btn btn-success botonr">Registrarse</a>
-		<p class="errorLogin">
+		
 			<?php
 				if(isset($_REQUEST['errorLogin'])) {
-					echo "Error en el inicio de sesion";				
+					echo '<p class="errorLogin bg-danger">';
+					echo "Error en el inicio de sesion </p>";				
 				}
 			?>		
-		</p>
 
 <!-- 	Menu de Navegacion -->
 
@@ -149,7 +187,7 @@
       				</ul>
       				<form class="navbar-form navbar-left" role="search" action="?c=subasta&a=vistaBusqueda" method="post">
         					<div class="form-group">
-          					<input type="text" class="form-control" name="buscar" placeholder="Buscar">
+          					<input type="text" class="form-control" name="buscar" placeholder="Buscar" >
         						<input type="submit" class="btn btn-default buscar" value="Buscar">
         					</div>
       				</form>
