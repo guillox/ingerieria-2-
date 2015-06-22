@@ -28,7 +28,7 @@ while( $fila= mysql_fetch_array($result)){
     
         echo"<h2>".$fila['nombre']."</h2>";
         echo "<img src=".$fila['imagen'].">";
-        echo"<p>".$fila['descripcion']."</p>";
+        echo"<p>Finaliza el día : ".$fila['fecha_fin']."</p>";
         //FALTA agregarle el link a descripciones    
     echo"</div>";
     echo"</article>";
