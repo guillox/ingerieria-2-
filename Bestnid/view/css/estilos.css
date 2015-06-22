@@ -249,6 +249,9 @@ body{
 	
 	
 }
+.info-busqueda p{
+	padding: 10px 0 10px 10px; 
+}
 
 p.texto1{
 	position: absolute;
@@ -297,11 +300,7 @@ h1.titulo{
 }
 
 .buscar{
-
-  	position: absolute;
-  	
-	left:50%; 
-	bottom:0%;
+	float: inherit;
   }
  
 .subasta{
@@ -586,4 +585,7 @@ img{
 .errorLogin{
 	color: red;
 	font-size: 18px;
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
