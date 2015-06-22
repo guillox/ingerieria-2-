@@ -21,7 +21,7 @@ class UsuarioController
  }
     public function registroVista() {
 		require_once 'view/header.php';
-      require_once 'view/formularioAlta.html';
+      require_once 'view/formularioAlta.php';
       require_once 'view/footer.php';    
     }
     public function vistaLogueado() {
@@ -32,7 +32,7 @@ class UsuarioController
     
 	public function vistaHSubasta() {
 		require_once 'view/headerLogueado.php';
-      require_once 'view/historialSubasta.php';
+      require_once 'view/historialUsuario.php';
       require_once 'view/footer.php';   
 	}    
     
