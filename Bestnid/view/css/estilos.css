@@ -579,6 +579,19 @@ img{
     height: 180px;
         overflow: hidden;
 }
+.linkSubasta{
+	color: white;
+	text-decoration: none;
+}
+.linkSubasta:hover{
+	color: #EAEAEA;
+	text-decoration: none;
+}
+
+.info-texto{
+	font-size: 16px;
+	font-weight: bold;
+}
 
 /*-------------------Error de logueo------------------*/
 
