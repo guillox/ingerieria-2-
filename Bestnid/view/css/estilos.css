@@ -621,10 +621,12 @@ img{
 	padding: 5px;
 	border-radius: 5px;
 }
+
 .content-img img{
 	width: 98%;
 	height:98%;
 }
+
 
 .content-datos{
 	width: 49%;
@@ -637,7 +639,7 @@ img{
 	position: relative;
 }
 
-.content-datos input{
+.content-datos button{
 	bottom:0px;
    right:0px;
    position:absolute;
@@ -662,4 +664,34 @@ img{
 	padding: 10px;
 		border-radius: 5px;
 		height: auto;
+}
+
+.min-textbox{
+	width: 10px;
+}
+
+/*----------OFERTA CONCRETA----------------*/
+.content-oferta-concreta{
+	width: 840px;
+	margin: 0 auto;
+	background-color: #EAEAEA;
+	padding: 10px 10px 10px 10px;
+	float: inherit;
+	border-radius: 5px;
+}
+
+.content-oferta-concreta {
+	text-align: center;
+}
+
+.content-oferta-concreta h1,h2{
+	text-align: center;
+}
+
+.imgOferta{
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
