@@ -80,12 +80,12 @@ $(document).ready(function(){
 										<div class="col-xs-12 col-sm-6">	
 			    							<form class="omb_loginForm" action="?c=usuario&a=loguear" autocomplete="off" method="POST">
 												<div class="input-group">
-													<span class="input-group-addon"><i class="fa fa-user"></i></span>
+													<span class="input-group-addon glyphicon glyphicon-user"><i class="fa fa-user"></i></span>
 													<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Correo ó Usuario" required="">
 												</div>
 												<span class="help-block"></span>
 												<div class="input-group">
-													<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+													<span class="input-group-addon glyphicon glyphicon-asterisk"><i class="fa fa-lock"></i></span>
 													<input  type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña" required="">
 												</div>
                     							<!--<span class="help-block">Password erroneo</span>-->
