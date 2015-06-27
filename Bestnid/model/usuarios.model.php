@@ -85,6 +85,39 @@ class UsuarioModel
 			die($e->getMessage());
 		}
 	}
+	public function obtenerxUoE($usuario)
+	{
+		try 
+		{
+			$stm = $this->pdo
+			          ->prepare("SELECT * FROM clientes WHERE usuario = ? OR email = ?");
+			          
+
+			$stm->execute(array($usuario,$usuario));
+			$r = $stm->fetch(PDO::FETCH_OBJ);
+			if($r) {
+				$usr = new Usuario();
+
+				$usr->__SET('id', $r->clientesID);
+				$usr->__SET('nombre', $r->nombre);
+				$usr->__SET('apellido', $r->apellido);
+				$usr->__SET('email',$r->email);
+				$usr->__SET('fecha_registro', $r->fecha_registro);
+				$usr->__SET('fecha_nac', $r->fecha_nac);
+				$usr->__SET('pasw',$r->pasw);
+				$usr->__SET('nombreUsuario',$r->usuario);
+				$usr->__SET('nro_tarjeta',$r->nro_tarjeta);
+			
+				return $usr;		
+			}else {
+				return false;
+			}
+		}
+		 catch (Exception $e) 
+		{
+			die($e->getMessage());
+		}
+	}	
 	public function existeUsuario($usuario)
 	{
 		try 
