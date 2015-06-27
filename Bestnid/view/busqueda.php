@@ -14,17 +14,25 @@
 Intentá ampliar tu búsqueda con más palabras.</h4>";
 }else {
 	 foreach($listado as $r): ?>
-	 <article >
-    <div class="contenArt">
+	<article >
+                <div class="contenArt">
     
-       <h2><?php echo $r->__GET('nombre'); ?></h2>
-       <?php
-       echo "<img src=".$r->__GET('imagen').">"
-       ?>
-       <p><?php echo "Finaliza el día : ".$r->__GET('fecha_fin'); ?></p>
+                    <h2> <?php
+                        if(isset($_SESSION['idUser'])) {
+                            echo  "<a href='?c=subasta&a=logDetalleSubasta&idActual=".$r->__GET('id')."'>". $r->__GET('nombre'). "</a>";
+                        }else{
+                             echo  "<a href='?c=subasta&a=detalleSubasta&idActual=".$r->__GET('id')."'>". $r->__GET('nombre'). "</a>";
+                        }
+                         ?>
+                    </h2>
+                    
+                    <?php
+                        echo "<img src=".$r->__GET('imagen').">"
+                    ?>
+                    <p><?php echo "Finaliza el día : ".$r->__GET('fecha_fin'); ?></p>
 
-    </div>
-     </article>
+                </div>
+            </article>
      
     <?php endforeach;} ?> 
    

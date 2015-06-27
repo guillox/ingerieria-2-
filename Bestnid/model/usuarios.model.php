@@ -110,7 +110,7 @@ class UsuarioModel
 		try 
 		{
 			$stm = $this->pdo
-			          ->prepare("SELECT * FROM clientes WHERE clienteIsD = ? ");
+			          ->prepare("SELECT * FROM clientes WHERE clientesID = ? ");
 			          
 
 			$stm->execute(array($id));

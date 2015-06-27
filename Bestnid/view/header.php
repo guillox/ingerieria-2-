@@ -81,12 +81,12 @@ $(document).ready(function(){
 			    							<form class="omb_loginForm" action="?c=usuario&a=loguear" autocomplete="off" method="POST">
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-user"></i></span>
-													<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Correo ó Usuario">
+													<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Correo ó Usuario" required="">
 												</div>
 												<span class="help-block"></span>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-													<input  type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña">
+													<input  type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña" required="">
 												</div>
                     							<!--<span class="help-block">Password erroneo</span>-->
 												<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
@@ -188,7 +188,7 @@ $(document).ready(function(){
       				<form class="navbar-form navbar-left" role="search" action="?c=subasta&a=vistaBusqueda" method="post">
         					<div class="form-group">
           					<input type="text" class="form-control" name="buscar" placeholder="Buscar" >
-        						<input type="submit" class="btn btn-default buscar" value="Buscar">
+        						<input type="submit" class="btn btn-default" value="Buscar">
         					</div>
       				</form>
       			</div><!-- /.navbar-collapse -->

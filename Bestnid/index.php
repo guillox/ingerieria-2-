@@ -3,6 +3,7 @@ require_once('db/db.php');
 require_once 'controller/usuario.controller.php';
 require_once 'controller/subasta.controller.php';
 
+
 // Todo esta lógica hara el papel de un FrontController
 if(!isset($_REQUEST['c'])){
 	    
