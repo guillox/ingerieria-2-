@@ -19,14 +19,14 @@
 	       <article >
                 <div class="contenArt">
     
-                    <h2> <?php/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>modificaion<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+                    <h2> <?php
                         if(isset($_SESSION['idUser'])) {
                             echo  "<a href='?c=subasta&a=logDetalleSubasta&idActual=".$r->__GET('id')."'>". $r->__GET('nombre'). "</a>";
                         }else{
                              echo  "<a href='?c=subasta&a=detalleSubasta&idActual=".$r->__GET('id')."'>". $r->__GET('nombre'). "</a>";
                         }
                          ?>
-                    </h2><?php/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>modificaion<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+                    </h2>
                     
                     <?php
                         echo "<img src=".$r->__GET('imagen').">"
