@@ -147,10 +147,17 @@ $(document).ready(function(){
 		
 			<?php
 				if(isset($_REQUEST['errorLogin'])) {
-					echo '<p class="errorLogin text-center bg-danger">';
-					echo "Error en el inicio de sesion </p>";				
-				}
-			?>		
+					#echo '<p class="errorLogin text-center bg-danger">';
+					#echo "Error en el inicio de sesion ya que no se encuentra registrado </p>";?>
+          <div class="alert alert-danger fade in text-center">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Error!</strong> Su usuario no se encuentra registrado por favor registrese.<br>
+            <button type="button" class="btn btn-success">Registrarse</button>
+            
+
+          </div>
+				<?php } ?> 
+					
 
 <!-- 	Menu de Navegacion -->
 
