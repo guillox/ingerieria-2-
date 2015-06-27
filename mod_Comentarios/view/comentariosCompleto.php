@@ -18,7 +18,9 @@
         }else{
             echo"usuario NO LOGUEADO";
             
-            $com->verComentarios(); 
+            $com->verComentarios($_REQUEST['idActual']); 
+            //$com->prueba();
+            
         }    
     
 
