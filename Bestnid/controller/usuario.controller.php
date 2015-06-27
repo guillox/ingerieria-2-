@@ -48,8 +48,14 @@ class UsuarioController
 	    $usr->__SET('nombreUsuario',$_REQUEST['usuario']);
 	    $usr->__SET('pasw',$_REQUEST['pass']);
 	    
+		if($this->model->obtenerxUoE($_REQUEST['usuario'])) {	    
+	   	header('Location: index.php?c=usuario&a=registroVista&errorRegistro='.$_REQUEST['usuario']);
+	 	}elseif($this->model->obtenerxUoE($_REQUEST['email'])) {
+	 		header('Location: index.php?c=usuario&a=registroVista&errorRegistro='.$_REQUEST['email']);
+	 	}else {
 	    $this->model->registrar($usr);
 	    header('Location: index.php');
+	 	}
     }
     
     public function loguear() {
