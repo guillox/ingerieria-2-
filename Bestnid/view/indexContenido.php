@@ -9,7 +9,7 @@
       					<a href="#">
         					<img  src="view/img/imgProducto/pelota2014.jpg" alt="deporte" >
         				</a>
-      					<p>Esta es la pelota del mundial de brasil 2014
+      					<p>Fecha de Finalizacion: 26-07-2015
       					</p>
       					<br>
       					</div>
@@ -20,7 +20,7 @@
 	      				<a href="#">
 	        				<img  src="view/img/imgProducto/pelota2010.jpg" alt="deporte" >
 	      				</a>
-      					<p>Esta es la pelota del mundial de brasil 2010
+      					<p>Fecha de Finalizacion: 26-07-2015
       				</p><br>
       				</div>
     			</article>
