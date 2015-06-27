@@ -1,6 +1,16 @@
+<div class="titulo-AM">
+	<h2>
+		Registro de Nuevo Usuario
+	</h2>
+</div>
 <script src="view/js/utils.js"></script>
 <section id="formulario">
 	<form action="?c=usuario&a=insertar" method="post" class="form-horizontal" onsubmit="return validarNuevoUsuario();">
+		<?php if(isset($_REQUEST['errorRegistro'])) {?>		
+		<div class="form-group">
+			<span><p class="bg-warning"><?php echo "'".$_REQUEST['errorRegistro']."' ya se encuentra registrado en el sistema";?></p></span>		
+		</div>		
+		<?php } ?>
 		<div class="form-group">		
 			<label for="nombre">Nombre:</label>
 			<input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre" required="" />
