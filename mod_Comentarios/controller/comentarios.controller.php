@@ -55,7 +55,8 @@
             $com=new Comentarios();
 
             /*id del que hace la pregunta*/
-            $com->__SET('usuarioID',$_SESSION['idUser']);
+            
+            $com->__SET('usuarioID',$_REQUEST['idUser']);
             
             /*id de la subasta actual*/
             $com->__SET('subastaID',$_REQUEST['idActual']);
@@ -73,6 +74,9 @@
             //metodo registrar en usuario.model.php
             $this->model->agregarComentario($com);
             
+            
+           // header("location: index.php?c=subasta&a=logDetalleSubasta&idActual=" echo $_REQUEST['idActual'];);
+                
         }
         
         
