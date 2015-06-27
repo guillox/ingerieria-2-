@@ -1,0 +1,117 @@
+<!-- acordeon -->
+
+<html>
+	<head>
+		<style type="text/css">
+			body{
+				background:rgba(0,0,0,0.2);
+			}
+			#bloque{
+				position:relative;
+				top:50px;
+				margin:auto;
+				width:300px;
+				border:2px solid white;
+				border-radius:25px;
+				-webkit-box-shadow:0px 10px 15px rgba(0,0,0,0.5);
+			}
+			h1{
+				color:white;
+				text-align:center;
+				font-family:verdana;
+				font-weight:bold;
+				text-shadow: 0px 0px 5px rgba(0,0,0,0.4);
+				margin:0px;
+				padding:0px;
+				height:40px;
+			}
+			
+			p{
+				font-family:verdana;
+				color:black;
+				text-shadow: 3px 3px 3px rgba(0,0,0,0.4);
+				text-align:justify;
+				font-size:10px;
+			}
+			img{
+				width:300px;
+				height:150px;
+			}
+			video{
+				width:300px;
+				height:200px;
+			}
+			audio{}
+			article{
+				height:40px;
+				overflow:hidden;
+				transition: height 2s;
+				-webkit-transition: height 2s;
+			}
+			article:focus{
+				height:250px;
+				outline:none;
+			}
+			#contenido{
+				position:absolute;
+				width:300px;
+				height:40px;
+				border:1px solid black;
+				box-shadow 0px 10px 15px rgba(0,0,0,0.5);
+				overflow:hidden;
+				-webkit-transform:translate(0px,-40px);
+				z-index:1;
+				opacity:0;
+			}
+			#contenido:focus{
+			background:rgba(255,255,255,0.5);
+			border:2px solid white;
+			border-radius:10px;
+			-webkit-box-shadow 0px 10px 15px rgba(0,0,0,0.5);
+				position:absolute;
+				display:table;
+				float:left;
+				top:10%;
+				left:10%;
+				width:400px;
+				height:300px;
+				-webkit-transform:scale(1,1);
+				z-index:3;
+				opacity:1;
+				-webkit-animation: surge 1s;
+			}
+			@-webkit-keyframes surge{
+				0%{opacity:0;-webkit-transform:scale(0.5,0.5);}
+				100%{opacity:1;-webkit-transform:scale(1,1);}
+			}
+			#boton{
+				position:relative;
+				display:box;
+				width:300px;
+				height:40px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="bloque">
+			<article contenteditable="true">
+				<h1>Seccion 1</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+			</article>
+			<article contenteditable="true">
+			<h1>Seccion 2</h1>
+				<img src="piano2.png">
+			</article>
+			<article contenteditable="true">
+			<h1>Seccion 3</h1>
+				<video src="sintel.ogg" controls="controls">
+				</video>
+			</article>
+			<article contenteditable="true">
+			<h1>Seccion 4</h1>
+				<audio src="0802.ogg" controls="controls">
+				</audio>
+			</article>
+		</div>
+	</body>
+</html>
