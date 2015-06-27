@@ -2,7 +2,7 @@
     <div class="pure-u-1-12">
      
         <br /><br />
-	<div class="info-busqueda"><p class="bg-info">Resultado de búsqueda para&nbsp <?php echo '"'.$_REQUEST['buscar'].'"'; ?><p></div>
+	<div class="info-busqueda"><p class="bg-info info-texto">Resultado de búsqueda para&nbsp <?php echo '"'.$_REQUEST['buscar'].'"'; ?><p></div>
         
 <div style="clear:both;"> </div>
 
@@ -19,9 +19,9 @@ Intentá ampliar tu búsqueda con más palabras.</h4>";
     
                     <h2> <?php
                         if(isset($_SESSION['idUser'])) {
-                            echo  "<a href='?c=subasta&a=logDetalleSubasta&idActual=".$r->__GET('id')."'>". $r->__GET('nombre'). "</a>";
+                            echo  "<a class='linkSubasta' href='?c=subasta&a=logDetalleSubasta&idActual=".$r->__GET('id')."'>". $r->__GET('nombre'). "</a>";
                         }else{
-                             echo  "<a href='?c=subasta&a=detalleSubasta&idActual=".$r->__GET('id')."'>". $r->__GET('nombre'). "</a>";
+                             echo  "<a class='linkSubasta' href='?c=subasta&a=detalleSubasta&idActual=".$r->__GET('id')."'>". $r->__GET('nombre'). "</a>";
                         }
                          ?>
                     </h2>
@@ -29,7 +29,9 @@ Intentá ampliar tu búsqueda con más palabras.</h4>";
                     <?php
                         echo "<img src=".$r->__GET('imagen').">"
                     ?>
-                    <p><?php echo "Finaliza el día : ".$r->__GET('fecha_fin'); ?></p>
+                    <p><?php 
+									$date = date_create($r->__GET('fecha_fin'));               
+                    			echo "Finaliza el día : ".date_format($date, 'd-m-Y '); ?></p>
 
                 </div>
             </article>
