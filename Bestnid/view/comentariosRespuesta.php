@@ -1,0 +1,1 @@
+<h1>espacio de respuestas subasta propia</h1>

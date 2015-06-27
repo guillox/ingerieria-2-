@@ -589,3 +589,77 @@ img{
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
+
+/*-------------------Titulo de Subastas--------------*/
+.titulo-AM{
+	margin: 0 auto; 
+	background-color: #EAEAEA;
+}
+
+.titulo-AM h2{
+	margin: 0 auto;
+	margin-bottom: 20px;
+	text-align: center;
+	padding: 5px 0 5px 0;
+}
+/*-------------------Detalles de la Subasta----------------*/
+
+.content-detalle{
+	width: 840px;
+	margin: 0 auto;
+	background-color: #EAEAEA;
+	padding: 10px 10px 10px 10px;
+	float: inherit;
+	border-radius: 5px;
+}
+
+.content-img{
+	width: 49%;
+	float: left;
+	background-color: white;
+	height: 350px;
+	padding: 5px;
+	border-radius: 5px;
+}
+.content-img img{
+	width: 98%;
+	height:98%;
+}
+
+.content-datos{
+	width: 49%;
+	height: 350px;
+	float: right;
+	margin-bottom: 20px;
+	background:none;
+		margin-bottom: 20px;
+		padding-right: 10px;
+	position: relative;
+}
+
+.content-datos input{
+	bottom:0px;
+   right:0px;
+   position:absolute;
+	width: 100%;
+}
+
+.content-datos p{
+	margin-bottom: 20px;
+	margin-top: 10px;
+}
+
+.resaltado{
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.content-desc{
+
+	clear: both;
+	width: 100%;
+	background-color: white;
+	padding: 10px;
+		border-radius: 5px;
+		height: auto;
+}

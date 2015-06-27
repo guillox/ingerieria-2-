@@ -64,6 +64,7 @@ session_start();
         				</li>
         				<li><a href="ayuda.html">Ayuda</a></li>
         				<li><a href="contacto.html">Contacto</a></li>
+        				<li><a href="?c=subasta&a=vistaNuevaSubasta">Subastar</a></li>
       				</ul>
       				<form class="navbar-form navbar-left" role="search" action="?c=subasta&a=vistaLBusqueda" method="post">
         					<div class="form-group formBusqueda">

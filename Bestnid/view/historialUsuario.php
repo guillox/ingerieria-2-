@@ -10,7 +10,7 @@
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home"><?php require_once 'view/historialSubasta.php'; ?></div>
+    <div role="tabpanel" class="tab-pane active" id="home"><?php require_once 'view/historialSubastaUsuario.php'; ?></div>
     <div role="tabpanel" class="tab-pane" id="profile">...</div>
     <div role="tabpanel" class="tab-pane" id="messages">...</div>
     <div role="tabpanel" class="tab-pane" id="settings">...</div>

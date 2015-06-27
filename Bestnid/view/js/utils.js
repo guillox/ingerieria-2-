@@ -7,7 +7,7 @@ function validarNuevoUsuario() {
 	var cPasw=document.getElementById('confirmPass').value;
 	var nTarjeta=document.getElementById('nroTarjeta').value;
   if (!(/^[a-zA-Z\s]*$/.test(nombre))) {
-  	  alert("error en el nombre");
+  	  nombre
   	return false;
   }
   else if (!(/^[a-zA-Z\s]*$/.test(apellido))) {
@@ -42,3 +42,6 @@ function validarNuevoUsuario() {
   alert("TODO OK");
   return true;
 }
+
+  
+
