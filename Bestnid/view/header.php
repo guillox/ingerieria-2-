@@ -147,7 +147,7 @@ $(document).ready(function(){
 		
 			<?php
 				if(isset($_REQUEST['errorLogin'])) {
-					echo '<p class="errorLogin bg-danger">';
+					echo '<p class="errorLogin text-center bg-danger">';
 					echo "Error en el inicio de sesion </p>";				
 				}
 			?>		
