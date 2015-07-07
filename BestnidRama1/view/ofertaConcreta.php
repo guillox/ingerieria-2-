@@ -1,0 +1,5 @@
+<div class="content-oferta-concreta">
+	<h2>Oferta concretada con exito</h2>
+	<img class="imgOferta" src="view/img/Ok.png" alt="">
+	<h1>Suerte!!!</h1>
+</div>

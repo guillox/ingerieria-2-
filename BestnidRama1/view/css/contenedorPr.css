@@ -1,0 +1,16 @@
+.contenedorPrincipal{
+    padding-top: 0%;
+    padding-left: 12%;
+    
+}
+.lineaAbiso{
+    
+    padding-left: 3%;
+    background-color: rgba(255,255,255,0.5);
+}
+.lineaAbiso h4{
+    margin: 1%;
+   
+    font-family: sans-serif;
+    color: rgba(255,255,255,1);
+}
