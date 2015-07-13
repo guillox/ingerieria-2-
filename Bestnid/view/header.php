@@ -10,47 +10,38 @@
 	<!-- <link rel="stylesheet" type="text/css" href="view/css/menu.css"> -->
 	
 	<link rel="stylesheet" type="text/css" href="view/css/estilos.css">
-	
 	<link rel="stylesheet" href="view/css/bootstrap.min.css">
-		<script src="view/js/jquery-1.11.3.min.js"></script>
-		<script type="text/javascript">
+	<script src="view/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
       $(document).ready(function(){
-                         
-      var consulta;
-             
-      //hacemos focus
-      $("#usuario").focus();
-                                                 
-      //comprobamos si se pulsa una tecla
-      $("#usuario").keyup(function(e){
-             //obtenemos el texto introducido en el campo
-             consulta = $("#usuario").val();
-                                      
-             //hace la búsqueda
-             $("#resultado").delay(1000).queue(function(n) {      
-                                           
-                  $("#resultado").html('<img src="ajax-loader.gif" />');
-                                           
-                        $.ajax({
-                              type: "POST",
-                              url: "/db/validarUsuarioDB.php",
-                              data: "b="+consulta,
-                              dataType: "html",
-                              error: function(){
-                                    alert("error petición ajax");
-                              },
-                              success: function(data){                                                      
-                                    $("#resultado").html(data);
-                                    n();
-                              }
-                  });
-                                           
-             });
-                                
+        var consulta;
+        //hacemos focus
+        $("#usuario").focus();
+        //comprobamos si se pulsa una tecla
+        $("#usuario").keyup(function(e){
+          //obtenemos el texto introducido en el campo
+          consulta = $("#usuario").val();
+          //hace la búsqueda
+          $("#resultado").delay(1000).queue(function(n) {      
+            $("#resultado").html('<img src="ajax-loader.gif" />');
+              $.ajax({
+                type: "POST",
+                url: "/db/validarUsuarioDB.php",
+                data: "b="+consulta,
+                dataType: "html",
+                error: function(){
+                      alert("error petición ajax");
+                },
+                success: function(data){                                                      
+                      $("#resultado").html(data);
+                      n();
+                }
+              });
+                                             
+              });
+        });
       });
-                          
-});
-</script>
+  </script>
 </head>
 
 <body>
@@ -62,7 +53,8 @@
 			</div>
 			<div class="sombralogo"> </div>
 		</div>
-		<div class="page-header">
+		
+    <div class="page-header">
     		<h1 class="titulo col-xs-6 col-sm-6">Subasta Bestnid</h1>
 		</div>
 		
@@ -90,7 +82,7 @@
 													<span class="input-group-addon glyphicon glyphicon-asterisk"><i class="fa fa-lock"></i></span>
 													<input  type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña" required="">
 												</div>
-                    							<!--<span class="help-block">Password erroneo</span>-->
+                    			<!--<span class="help-block">Password erroneo</span>-->
 												<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
 											</form>
 										</div>
@@ -99,28 +91,25 @@
 							</div>
 							</div>
 						<div class="modal-body"></div>
-					
 					</div>	
 				</div>
 			</div>
 		</div>
 		<a href="?c=usuario&a=registroVista" class="btn btn-success botonr">Registrarse</a>
-		
-			<?php
-				if(isset($_REQUEST['errorLogin'])) {
-					#echo '<p class="errorLogin text-center bg-danger">';
-					#echo "Error en el inicio de sesion ya que no se encuentra registrado </p>";?>
-          <div class="alert alert-danger fade in text-center">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>Error!</strong> Su usuario no se encuentra registrado por favor registrese.<br>
-            <button type="button" class="btn btn-success">Registrarse</button>
-          </div>
-			<?php } ?> 
+		<?php
+			if(isset($_REQUEST['errorLogin'])) {
+				#echo '<p class="errorLogin text-center bg-danger">';
+				#echo "Error en el inicio de sesion ya que no se encuentra registrado </p>";?>
+        <div class="alert alert-danger fade in text-center">
+          <a href="#" class="close" data-dismiss="alert">&times;</a>
+          <strong>Error!</strong> Su usuario no se encuentra registrado por favor registrese.<br>
+          <button type="button" class="btn btn-success">Registrarse</button>
+        </div>
+		<?php } ?> 
 					
 
 <!-- 	Menu de Navegacion -->
-
-		<nav class="navbar navbar-default">
+    <nav class="navbar navbar-default">
   			<div class="container-fluid">
     		<!-- Brand and toggle get grouped for better mobile display -->
     			<div class="navbar-header">
@@ -130,38 +119,28 @@
         				<span class="icon-bar"></span>
         				<span class="icon-bar"></span>
       				</button>
-                    
-                    <!-- -------------primer boton----------------->
-      				<a class="navbar-brand" href="index.php">Bestnid</a>
-    	
-                
-                </div>
-
-    			<!-- Collect the nav links, forms, and other content for toggling -->
+                <!-- -------------primer boton----------------->
+      				  <a class="navbar-brand" href="index.php">Bestnid</a>
+              </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
     			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       				<ul class="nav navbar-nav">
         				<li class="dropdown">
-                            
-          					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categoria<span class="caret"></span></a>
-		      				<ul class="dropdown-menu" role="menu">
-                                
-<?php  /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>> AGREGADO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-                                require_once 'controller/categoria.controller.php';
-                                $categoria= new CategoriaController();
-                                $listado=$categoria->verCategoria();
-                                /*asumo que siempre va a ver alguna categoria*/
-                                foreach($listado as $r):
-?>
-                                    <li><a <?php echo 'href="?c=categoria&a=listarSubastasCategoria&nombre='.$r->__GET('nombre').'&idActual='.$r->__GET('id').'">'.$r->__GET('nombre'); ?></a></li>
-                                                   
-                                                     
-<?php
-                                endforeach;
-?>
-
-		            <!--			<li><a href="#">subastas con mejor puntaje</a></li>   -->
-		      				                            
-                            </ul>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categoria<span class="caret"></span></a>
+		      		  <ul class="dropdown-menu" role="menu">
+                  <?php  /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>> AGREGADO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+                    require_once 'controller/categoria.controller.php';
+                    $categoria= new CategoriaController();
+                    $listado=$categoria->verCategoria();
+                    /*asumo que siempre va a ver alguna categoria*/
+                    foreach($listado as $r):
+                      ?>
+                        <li><a <?php echo 'href="?c=categoria&a=listarSubastasCategoria&nombre='.$r->__GET('nombre').'&idActual='.$r->__GET('id').'">'.$r->__GET('nombre'); ?></a></li>
+                      <?php
+                    endforeach;
+                    ?>
+                    <!--			<li><a href="#">subastas con mejor puntaje</a></li>   -->
+		      			</ul>
         				</li>
         				<li><a href="view/ayuda.php">Ayuda</a></li>
         				<li><a href="view/contacto.php">Contacto</a></li>
@@ -173,7 +152,7 @@
         						<input type="submit" class="btn btn-default" value="Buscar">
         					</div>
       				</form>
-      			</div><!-- /.navbar-collapse -->
+      		</div><!-- /.navbar-collapse -->
   			</div><!-- /.container-fluid -->
 		</nav>
 	
