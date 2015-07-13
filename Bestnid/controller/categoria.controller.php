@@ -7,6 +7,7 @@ class CategoriaController
 {
 	private $model;
     
+    /*creacion del constructor*/
     public function __CONSTRUCT(){
         $this->model = new CategoriaModel();
     }
@@ -16,7 +17,7 @@ class CategoriaController
           return $this->model->listarAll();
     }
     
-    /*lista las ultimas  subastas agregados*/
+    /*lista las ultimas subastas agregados*/
     public function listarUlt(){
         $subasta= new SubastaModel();
         $limite=20;
@@ -24,38 +25,32 @@ class CategoriaController
         return $lista;
     }
     
-/*------------- listar por categorias-------------*/
+    /*listar por categorias*/
     public function listarCategoria($idCategoria){
         $subasta= new SubastaModel();
-        
         $limite=20;
         return $subasta->listarCategoria($idCategoria,$limite);
     }
     
     
-       /* listar todos los de la categoria */
+    /* listar subasta categoria logueado */
     public function listarSubastasCategoriaLog(){
-    
-         require_once 'view/headerLogueado.php';
+        require_once 'view/headerLogueado.php';
         $id=$_REQUEST['idActual'];
-        
         $limite=20;
         $listado=$this->listarCategoria($id, $limite);
-         require_once 'view/categoriaBusqueda.php';
-         require_once 'view/footer.php';
+        require_once 'view/categoriaBusqueda.php';
+        require_once 'view/footer.php';
     
     }
 
     
-    
+    /*listar subasta categoria sin logear*/
     public function listarSubastasCategoria(){
-   
         require_once 'view/header.php';
         $id=$_REQUEST['idActual'];
         $limite=20;
-        
         $listado=$this->listarCategoria($id, $limite);
-        
         require_once 'view/categoriaBusqueda.php';
         require_once 'view/footer.php';
     }
