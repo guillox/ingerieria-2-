@@ -22,8 +22,7 @@ class SubastaModel
 	{
 		try 
 		{
-			$stm = $this->pdo
-			          ->prepare("SELECT * FROM subasta WHERE subastaID = ? ");
+			$stm = $this->pdo->prepare("SELECT * FROM subasta WHERE subastaID = ? ");
 			          
 
 			$stm->execute(array($id));
@@ -162,10 +161,15 @@ class SubastaModel
 		
 		try 
 		{
-			$stm = $this->pdo
-			          ->prepare("DELETE FROM subasta WHERE subastaID = ?");			          
+			$sql = "UPDATE subasta SET 
+						inactivo		=?
+						
+				    WHERE subastaID = ?";
 
-			$stm->execute(array($id));
+			$this->pdo->prepare($sql)
+			     ->execute(
+				array('*',$id)
+				);
 		} catch (Exception $e) 
 		{
 			die($e->getMessage());
@@ -196,7 +200,7 @@ class SubastaModel
 					$data->__GET('imagen'),
 					$data->__GET('fecha_inicio'),
 					$data->__GET('fecha_fin'),
-					$data->__GET('subastaID')
+					$data->__GET('id')
 					)
 				);
 		} catch (Exception $e) 
@@ -204,58 +208,82 @@ class SubastaModel
 			die($e->getMessage());
 		}
 	}
-}
-//-------Test Subasta----------
-//$s=new SubastaModel();
-//print_r($s->listar('tele'));
+  
+    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>AGREGADO PARA CATEGORIA CONTROLLER<<<<<<<<<<<<<<<<<<<<<<<<*/
+    /*listar las ultimas subastas agregadas*/
+    
+    public function listarUltimasSubastas($limite)
+	{
+		try
+		{
+			$result = array();
 
-//----------Test Insertar subasta nueva-----------------
-/*require_once('subasta.entidad.php');
-require_once('../db/db.php');
-$subasta=new Subasta();
+			$stm = $this->pdo->prepare("SELECT * FROM subasta ORDER BY subastaID DESC LIMIT $limite");
+			$stm->execute();
 
-				$subasta->__SET('usuarioID',1); 
-				$subasta->__SET('categoriaID',1); 
-				$subasta->__SET('nombre','testNombre');
-				$subasta->__SET('descripcion','testDescripcion');
-				$subasta->__SET('imagen','testImg');
-				$subasta->__SET('fecha_inicio','2015-03-19');
-				$subasta->__SET('fecha_fin','2015-04-19');
+			foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
+			{
+				$usr = new Subasta();
+
+				$usr->__SET('id', $r->subastaID);
+				$usr->__SET('usuarioID', $r->usuarioID);
+				$usr->__SET('categoriaID', $r->categoriaID);
+				$usr->__SET('nombre',$r->nombre);
+				$usr->__SET('descripcion', $r->descripcion);
+				$usr->__SET('imagen', $r->imagen);
+				$usr->__SET('fecha_inicio',$r->fecha_inicio);
+				$usr->__SET('fecha_fin',$r->fecha_fin);
 				
-$sm=new SubastaModel();
-$sm->altaSubasta($subasta);
-print_r($sm->listar($subasta->__GET('usuarioID')));
-	FUNCIONA OK!!!
-*/
 
-//--------------Test Eliminar subasta ------------------
-/*require_once('subasta.entidad.php');
-require_once('../db/db.php');
-$sm=new SubastaModel();
-$sm->bajaSubasta(6);
-$sm->listar('');
-	FUNCIONA OK!!!
-*/
+				$result[] = $usr;
+			}
 
-//--------------Test Modificar subasta------------------
-/*require_once('subasta.entidad.php');
-require_once('../db/db.php');
-$subasta=new Subasta();
-				$subasta->__SET('subastaID',8);
-				$subasta->__SET('usuarioID',1); 
-				$subasta->__SET('categoriaID',1); 
-				$subasta->__SET('nombre','testNombreM');
-				$subasta->__SET('descripcion','testDescripcionM');
-				$subasta->__SET('imagen','testImg');
-				$subasta->__SET('fecha_inicio','2015-03-19');
-				$subasta->__SET('fecha_fin','2015-04-19');
-$sm=new SubastaModel();
-$sm->modificarSubasta($subasta);
-print_r($sm->listar($subasta->__GET('subastaID')));			
-	FUNCIONA OK!!!
+			return $result;
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+    
+    /* -------filtardo por categoria----------*/
+    	public function listarCategoria($idCategoria,$limite)
+	{
+		try
+		{
+           
+            
+			$result = array();
 
+			$stm = $this->pdo->prepare("SELECT * FROM subasta WHERE categoriaID = $idCategoria ORDER BY subastaID DESC LIMIT $limite");
+			$stm->execute();
 
-$fecha = new DateTime('2000-01-01');
-$fecha->add(new DateInterval('P15D'));
-echo $fecha->format('Y-m-d') . "\n";*/
+			foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
+			{
+				$usr = new Subasta();
+
+				$usr->__SET('id', $r->subastaID);
+				$usr->__SET('usuarioID', $r->usuarioID);
+				$usr->__SET('categoriaID', $r->categoriaID);
+				$usr->__SET('nombre',$r->nombre);
+				$usr->__SET('descripcion', $r->descripcion);
+				$usr->__SET('imagen', $r->imagen);
+				$usr->__SET('fecha_inicio',$r->fecha_inicio);
+				$usr->__SET('fecha_fin',$r->fecha_fin);
+				
+
+				$result[] = $usr;
+			}
+
+			return $result;
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+    
+    
+}
+
 ?>

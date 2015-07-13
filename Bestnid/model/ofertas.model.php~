@@ -1,5 +1,5 @@
 <?php
-class OfertaModel
+class OfertasModel
 {
 	private $pdo;
 	public function __CONSTRUCT()
@@ -38,13 +38,114 @@ class OfertaModel
 			die($e->getMessage());
 		}
 	}
+	
+	public function ofertaXIdSubasta($id) {
+			try 
+		{
+			$stm = $this->pdo
+			          ->prepare("SELECT * FROM ofertas WHERE subastaID = ? ");      
+
+			$stm->execute(array($id));
+			$r = $stm->fetch(PDO::FETCH_OBJ);
+			if($r) {
+				return true;		
+			}else {
+				return false;
+			}
+		}
+		 catch (Exception $e) 
+		{
+			die($e->getMessage());
+		}	
+	}
+	
+	public function listarIDS($id)
+	{
+		try
+		{
+			$result = array();
+
+			$stm = $this->pdo->prepare("SELECT * FROM ofertas WHERE subastaID=$id ");
+			$stm->execute();
+
+			foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
+			{
+				$usr = new Subasta();
+
+				$usr->__SET('id', $r->ofertaID);
+				$usr->__SET('usuarioID', $r->usuarioID);
+				$usr->__SET('subastaID', $r->subastaID);
+				$usr->__SET('monto',$r->monto);
+				$usr->__SET('necesidad', $r->necesidad);
+				$usr->__SET('fecha', $r->fecha);
+				
+				$result[] = $usr;
+			}
+
+			return $result;
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}	
+	
+	public function getMonto($id) {
+		try 
+		{
+			$stm = $this->pdo->prepare("SELECT * FROM ofertas WHERE ofertaID = ? ");
+			          
+
+			$stm->execute(array($id));
+			$r = $stm->fetch(PDO::FETCH_OBJ);
+			if($r) {
+				$sb = new Subasta();
+
+				$sb->__SET('id', $r->subastaID);
+				$sb->__SET('usuarioID', $r->usuarioID);
+				$sb->__SET('categoriaID', $r->categoriaID);
+				$sb->__SET('nombre',$r->nombre);
+				$sb->__SET('descripcion', $r->descripcion);
+				$sb->__SET('imagen', $r->imagen);
+				$sb->__SET('fecha_inicio',$r->fecha_inicio);
+				$sb->__SET('fecha_fin',$r->fecha_fin);
+			
+				return $sb;		
+			}else {
+				return false;
+			}
+		}
+		 catch (Exception $e) 
+		{
+			die($e->getMessage());
+		}	
+	}	
+	
+	public function eliminarAll($id)
+	{
+		try 
+		{
+			$sql = "UPDATE ofertas SET 
+						inactivo		=?
+						
+				    WHERE subastaID = ?";
+
+			$this->pdo->prepare($sql)
+			     ->execute(
+				array('*',$id)
+				);
+		} catch (Exception $e) 
+		{
+			die($e->getMessage());
+		}
+	}
 }
 
 /*------------TEST INSERTAR OFERTA----------------*/
-
+/*
 require_once('ofertas.entidad.php');
 require_once('../db/db.php');
-$of=new Ofertas();
+/*$of=new Ofertas();
 $of->__SET('usuarioID',1);
 $of->__SET('subastaID',1);
 $of->__SET('monto',600);
@@ -53,3 +154,6 @@ $of->__SET('fecha',date('Y').'-'.date('m').'-'.date('d'));
 
 $ofModel=new OfertaModel();
 $ofModel->insertarOferta($of);
+
+FUNCIONA OK!!
+*/
