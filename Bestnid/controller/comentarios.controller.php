@@ -6,45 +6,91 @@
     {
         private $model;
     
-        public function __CONSTRUCT(){
+        public function __CONSTRUCT()
+        {
             $this->model = new ComentariosModel();
         }
         
-        /*usuario logueado desea ver comentarios*/
+        
+/*---------usuario logueado desea ver comentarios------------*/
         public function logVerComentarios($idSubasta,$idUsuario)
         {
-            /*averiguar si es su subasta*/
-            echo"subasta ID ".$idSubasta;
-            echo "usuario ID ".$idUsuario;  
-            
+            /*averiguar si es su subasta*/         
             $iguales=$this->model->propio($idSubasta,$idUsuario);
             
             
-            if($iguales){
-                echo "es el dueño";
+            if($iguales){//es el dueño de la subasta
                 /*mostrar los comentarios  con la opcion de respuesta*/
                 require_once 'view/comentariosRespuesta.php';
-                
             }else{
-                echo "no es el dueño";
-                /*mostrar los comentarios con la opcion de pregunta*/
-                
-                echo"<h3>formulario para hacer la pregunta</h3>";
-                
+                /*mostrar los comentarios con la -------OPCION----- de pregunta*/
+                require_once 'view/comentariosFormPreguntar.php';   
                 require_once 'view/comentariosVisita.php';
-                
             }
         
-        }    
+        } 
+        
+     
         
         /*usuario No logueado dese ver comentarios */
-        public function verComentarios()
+        public function verComentarios($idSubasta)
         {
             
             require_once 'view/comentariosVisita.php';
+            
         }
         
-    
+        
+        
+        
+/*-------------insertar pregunta-------------*/
+        public function insertarComentario()
+        {
+            $nro=$_REQUEST['idActual'];
+            
+                $com=new Comentarios();
+
+                /*id del que hace la pregunta*/
+
+                $com->__SET('usuarioID',$_REQUEST['idUser']);
+
+                /*id de la subasta actual*/
+                $com->__SET('subastaID',$_REQUEST['idActual']);
+
+
+                /*agrega fecha actual*/
+                $com->__SET('fechaPregunta',date("Y-m-d H:i:s"));
+
+                $com->__SET('pregunta',$_REQUEST['comentario']);
+
+
+
+                //metodo registrar en usuario.model.php
+                $this->model->agregarComentario($com);
+                  
+            
+            
+             header("location: index.php?c=subasta&a=logDetalleSubasta&idActual=$nro");
+            
+        }
+        
+        
+        public function insertarRespuesta()
+        { 
+            $this->model->agregarRespuesta($_REQUEST['idPregunta'],$_REQUEST['respuesta'],date("Y-m-d H:i:s"));
+            
+            
+             $nro=$_REQUEST['idSubasta'];
+            header("location: index.php?c=subasta&a=logDetalleSubasta&idActual=$nro"); 
+        }
+        
+        
+        public function prueba()
+        {
+            
+            echo" <h2><br>funciona <br> </h2>";
+            
+        }
     
     
     }

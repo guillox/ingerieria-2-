@@ -20,6 +20,7 @@ class UsuarioController
       require_once 'view/pagConstruccion.html';   
  }
     public function registroVista() {
+		$usr = new Usuario();
 		require_once 'view/header.php';
       require_once 'view/formularioAlta.php';
       require_once 'view/footer.php';    

@@ -20,6 +20,7 @@ class UsuarioController
       require_once 'view/pagConstruccion.html';   
  }
     public function registroVista() {
+		$usr = new Usuario();
 		require_once 'view/header.php';
       require_once 'view/formularioAlta.php';
       require_once 'view/footer.php';    
@@ -32,7 +33,7 @@ class UsuarioController
     
 	public function vistaHSubasta() {
 		require_once 'view/headerLogueado.php';
-      require_once 'view/historialSubasta.php';
+      require_once 'view/historialUsuario.php';
       require_once 'view/footer.php';   
 	}    
     
@@ -48,8 +49,14 @@ class UsuarioController
 	    $usr->__SET('nombreUsuario',$_REQUEST['usuario']);
 	    $usr->__SET('pasw',$_REQUEST['pass']);
 	    
+		if($this->model->obtenerxUoE($_REQUEST['usuario'])) {	    
+	   	header('Location: index.php?c=usuario&a=registroVista&errorRegistro='.$_REQUEST['usuario'].'&usr='.serialize($usr));
+	 	}elseif($this->model->obtenerxUoE($_REQUEST['email'])) {
+	 		header('Location: index.php?c=usuario&a=registroVista&errorRegistro='.$_REQUEST['email'].'&usr='.$usr);
+	 	}else {
 	    $this->model->registrar($usr);
 	    header('Location: index.php');
+	 	}
     }
     
     public function loguear() {

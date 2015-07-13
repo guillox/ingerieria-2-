@@ -47,7 +47,24 @@ class SubastaController
 			require_once 'view/historialSubastaUsuario.php';
     		require_once 'view/footer.php';  
 	} 	
- 	
+ 	/*---------------------------agregado--------------------------------*/
+    public function detalleSubasta(){           
+				require_once 'view/header.php';            
+				require_once 'view/detalleSubasta.php';
+				require_once 'view/comentariosCompleto.php';    
+				require_once 'view/footer.php';
+    
+    }
+    
+    
+      public function logDetalleSubasta(){
+				require_once 'view/headerLogueado.php';   
+				require_once 'view/detalleSubasta.php';
+				 /*si puedo ver el ide de usuario*/
+				require_once 'view/comentariosCompleto.php';    
+				require_once 'view/footer.php';
+    
+    }
  	public function insertarSubasta() {
 	    $sub=new Subasta();
 	    

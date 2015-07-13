@@ -80,7 +80,7 @@ class SubastaController
 	    $sub->__SET('imagen',$this->guardarImagen());
 	    
 	    $this->model->altaSubasta($sub);
-	    header('Location: index.php?c=usuario&a=index');
+	    header('Location: index.php?c=usuario&a=vistaHSubasta');
     }
     
    public function modificarSubasta() {
