@@ -2,8 +2,10 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Subastas Bestnid <?php if(isset($_REQUEST['titulo'])){
-		echo - $_REQUEST['titulo'];} ?></title>
+	<title>Subastas Bestnid 
+    <?php if(isset($_REQUEST['titulo'])){
+		        echo - $_REQUEST['titulo'];} ?>
+  </title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<!-- <link rel="stylesheet" type="text/css" href="view/css/menu.css"> -->
 	
@@ -12,7 +14,7 @@
 	<link rel="stylesheet" href="view/css/bootstrap.min.css">
 		<script src="view/js/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript">
-$(document).ready(function(){
+      $(document).ready(function(){
                          
       var consulta;
              
@@ -112,10 +114,8 @@ $(document).ready(function(){
             <a href="#" class="close" data-dismiss="alert">&times;</a>
             <strong>Error!</strong> Su usuario no se encuentra registrado por favor registrese.<br>
             <button type="button" class="btn btn-success">Registrarse</button>
-            
-
           </div>
-				<?php } ?> 
+			<?php } ?> 
 					
 
 <!-- 	Menu de Navegacion -->
@@ -163,8 +163,8 @@ $(document).ready(function(){
 		      				                            
                             </ul>
         				</li>
-        				<li><a href="ayuda.html">Ayuda</a></li>
-        				<li><a href="contacto.html">Contacto</a></li>
+        				<li><a href="view/ayuda.php">Ayuda</a></li>
+        				<li><a href="view/contacto.php">Contacto</a></li>
                         
       				</ul>
       				<form class="navbar-form navbar-left" role="search" action="?c=subasta&a=vistaBusqueda" method="post">
