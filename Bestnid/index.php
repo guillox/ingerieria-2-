@@ -2,6 +2,9 @@
 require_once('db/db.php');
 require_once 'controller/usuario.controller.php';
 require_once 'controller/subasta.controller.php';
+require_once 'controller/ofertas.controller.php';
+require_once 'controller/comentarios.controller.php';
+require_once 'controller/historialVenta.controller.php';
 
 
 // Todo esta lógica hara el papel de un FrontController
@@ -34,3 +37,8 @@ if(!isset($_REQUEST['c'])){
     // Llama la accion
     call_user_func( array( $controller, $accion ) );
 }
+
+?>
+<script type="text/javascript" src="/view/js/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript" src="view/js/animaciones.js"></script>
