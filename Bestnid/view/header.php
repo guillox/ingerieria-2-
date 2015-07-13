@@ -60,7 +60,7 @@
 		
 		<div class="container">
 			<button type="button" href class="btn btn-default botoni" data-toggle="modal" data-target="#miventana">
-				Iniciar sesion
+				Iniciar Sesion
 			</button>
 			<div class="modal fade" id="miventana">
 				<div class="modal-dialog modal-lg">
