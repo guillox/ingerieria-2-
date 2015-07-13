@@ -19,7 +19,10 @@
 		$user=$UM->obtenerPorID($detalle->__GET('usuarioID'));
 		echo " ".$user->__GET('nombre');		
 		?> </p>
-		<p><span class="resaltado">Fecha de finalización:</span><?php echo " ".$detalle->__GET('fecha_fin'); ?></p>
+		<p><span class="resaltado">Fecha de finalización:</span><?php 
+		$date = date_create($detalle->__GET('fecha_fin'));    		
+		echo " ".date_format($date, 'd-m-Y ');?></p>
+		<?php if(isset($_SESSION['idUser']) && $_SESSION['idUser']!=$detalle->__GET('usuarioID')) { ?>
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Ofertar</button>
 <!-- Comienzo del Lightbox -->		
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -54,6 +57,7 @@
     </div>
   </div>
 </div>
+	<?php } ?>
 <!-- Fin del Lightbox -->		
 	</section>
 	<section class="content-desc">

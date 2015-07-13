@@ -35,8 +35,7 @@ require_once 'model/categoria.model.php';?>
 				 	<?php endforeach; ?>
 			</select>		
 		</div>
-		<?php
-		if(!($sub->id>0)) { ?>
+		
 		<div class="form-group">				
 			<label for="fechaFin">Duración:</label>
 			<?php 
@@ -47,11 +46,12 @@ require_once 'model/categoria.model.php';?>
 					return $dias;
 				}			
 			?>
-			<select class="form-control" id="duracion" name="duracion">
+			<input type="number" class="form-control" min="15" max="30" name="duracion" value="<?php echo dias_transcurridos($sub->__GET('fecha_inicio'),$sub->__GET('fecha_fin')); ?>" />
+			<!-- <select class="form-control" id="duracion" name="duracion">
 				<option value ="15" <?php echo dias_transcurridos($sub->__GET('fecha_inicio'),$sub->__GET('fecha_fin')) == 15 ? 'selected' : ''; ?>>15 Días</option>
 				<option value ="30" <?php echo dias_transcurridos($sub->__GET('fecha_inicio'),$sub->__GET('fecha_fin')) == 30 ? 'selected' : ''; ?>>30 Días</option>
-			</select>
-		</div>		<?php } ?>
+			</select> -->
+		</div>
 		<div class="form-group">				
 			<label for="descripcion">Descripcion:</label><br/>
 			<textarea id="descripcion" class="form-control" name="descripcion" placeholder="Escriba una breve descripcion del Producto" rows="8" cols="65"> <?php echo $sub->__GET('descripcion'); ?></textarea>

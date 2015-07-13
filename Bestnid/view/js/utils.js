@@ -43,5 +43,10 @@ function validarNuevoUsuario() {
   return true;
 }
 
-  
+  function MostrarOcultar(texto)  
+{  
+      
+        document.getElementById('necesidad-Completo').innerHTML='<h4 class="modal-title tituloNecesidad" id="myModalLabel">Necesidad</h4><p class="textoNecesidad">'+texto+'</p>';
+    
+}  
 

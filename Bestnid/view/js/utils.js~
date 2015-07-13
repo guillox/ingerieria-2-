@@ -43,23 +43,10 @@ function validarNuevoUsuario() {
   return true;
 }
 
-
-$(document).ready(function() {    
-    $('#usuario').blur(function(){
-
-        $('#Info').html('<img src="loader.gif" alt="" />').fadeOut(1000);
-
-        var username = $(this).val();        
-        var dataString = 'usuario='+username;
-
-        $.ajax({
-            type: "POST",
-            url: "/db/validarUsuarioDB.php",
-            data: dataString,
-            success: function(data) {
-                $('#Info').fadeIn(1000).html(data);
-            }
-        });
-    });              
-});    
+  function MostrarOcultar(texto)  
+{  
+      
+        document.getElementById('necesidad-Completo').innerHTML='<h4 class="modal-title" id="myModalLabel">Necesidad</h4><p class="textoNecesidad">'+texto+'</p>';
+    
+}  
 

@@ -93,52 +93,11 @@ $(document).ready(function(){
 											</form>
 										</div>
     								</div>
-								<!--<div class="row omb_row-sm-offset-3">
-									<div class="col-xs-12 col-sm-3">
-										<label class="checkbox">
-										<input type="checkbox" value="remember-me">Recordar
-										</label>
-									</div>
-									<div class="col-xs-12 col-sm-3">
-										<p class="omb_forgotPwd">
-											<a href="#">Se olvido la contraseña?</a>
-										</p>
-									</div>
-								</div>	-->    	
+								    	
 							</div>
 							</div>
 						<div class="modal-body"></div>
-						<!--<div class="modal-footer">
-							<div class="omb_login">
-    							<div class="row omb_row-sm-offset-3 omb_loginOr">
-									<div class="col-xs-12 col-sm-6">
-										<hr class="omb_hrOr">
-										<span class="omb_spanOr">o</span>
-									</div>
-								</div>
-    							<h3 class="omb_authTitle">Iniciar Sesion ,si no estas registrado? <a href="?c=usuario&a=registroVista">Registrate</a></h3>
-								<div class="row omb_row-sm-offset-3 omb_socialButtons">
-    	    						<div class="col-xs-4 col-sm-2">
-		        						<a href="#" class="btn btn-lg btn-block omb_btn-facebook">
-			        						<i class="fa fa-facebook visible-xs"></i>
-			        						<span class="hidden-xs">Facebook</span>
-		        						</a>
-	       	 						</div>
-        							<div class="col-xs-4 col-sm-2">
-		        						<a href="#" class="btn btn-lg btn-block omb_btn-twitter">
-			        						<i class="fa fa-twitter visible-xs"></i>
-			        						<span class="hidden-xs">Twitter</span>
-		        						</a>
-	        						</div>	
-        							<div class="col-xs-4 col-sm-2">
-		        						<a href="#" class="btn btn-lg btn-block omb_btn-google">
-			        						<i class="fa fa-google-plus visible-xs"></i>
-			        						<span class="hidden-xs">Google+</span>
-		        						</a>
-	        						</div>	
-								</div>
-							</div>
-						</div>-->
+					
 					</div>	
 				</div>
 			</div>
@@ -171,26 +130,42 @@ $(document).ready(function(){
         				<span class="icon-bar"></span>
         				<span class="icon-bar"></span>
       				</button>
+                    
+                    <!-- -------------primer boton----------------->
       				<a class="navbar-brand" href="index.php">Bestnid</a>
-    			</div>
+    	
+                
+                </div>
 
     			<!-- Collect the nav links, forms, and other content for toggling -->
     			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       				<ul class="nav navbar-nav">
         				<li class="dropdown">
+                            
           					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categoria<span class="caret"></span></a>
 		      				<ul class="dropdown-menu" role="menu">
-		            			<li><a href="#">Accesorio Auto</a></li>
-		            			<li><a href="#">Computacion</a></li>
-		            			<li><a href="#">Ropa</a></li>
-		            			<li class="divider"></li>
-		            			<li><a href="#">Deporte</a></li>
-		            			<li class="divider"></li>
-		            			<li><a href="#">Revistas</a></li>
-		      				</ul>
+                                
+<?php  /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>> AGREGADO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+                                require_once 'controller/categoria.controller.php';
+                                $categoria= new CategoriaController();
+                                $listado=$categoria->verCategoria();
+                                /*asumo que siempre va a ver alguna categoria*/
+                                foreach($listado as $r):
+?>
+                                    <li><a <?php echo 'href="?c=categoria&a=listarSubastasCategoria&nombre='.$r->__GET('nombre').'&idActual='.$r->__GET('id').'">'.$r->__GET('nombre'); ?></a></li>
+                                                   
+                                                     
+<?php
+                                endforeach;
+?>
+
+		            <!--			<li><a href="#">subastas con mejor puntaje</a></li>   -->
+		      				                            
+                            </ul>
         				</li>
         				<li><a href="ayuda.html">Ayuda</a></li>
         				<li><a href="contacto.html">Contacto</a></li>
+                        
       				</ul>
       				<form class="navbar-form navbar-left" role="search" action="?c=subasta&a=vistaBusqueda" method="post">
         					<div class="form-group">
@@ -201,81 +176,6 @@ $(document).ready(function(){
       			</div><!-- /.navbar-collapse -->
   			</div><!-- /.container-fluid -->
 		</nav>
-	<!--	<div class="row">
-      <div class="col-1-2">
-        <h2>1/2</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-      <div class="col-1-2">
-        <h2>1/2</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-    </div><
-    
-    <div class="row">
-      <div class="col-2-3">
-        <h2>2/3</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-      <div class="col-1-3">
-        <h2>1/3</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-1-4">
-        <h2>1/4</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-      <div class="col-1-4">
-        <h2>1/4</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-      <div class="col-1-4">
-        <h2>1/4</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-      <div class="col-1-4">
-        <h2>1/4</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-1-8">
-        <h2>1/8</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-      <div class="col-1-8">
-        <h2>1/8</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-      <div class="col-1-8">
-        <h2>1/8</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-      <div class="col-1-8">
-        <h2>1/8</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-      <div class="col-1-8">
-        <h2>1/8</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-      <div class="col-1-8">
-        <h2>1/8</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-      <div class="col-1-8">
-        <h2>1/8</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-      <div class="col-1-8">
-        <h2>1/8</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      </div>
-    </div>
-  </div>-->
+	
 	</header> 
 

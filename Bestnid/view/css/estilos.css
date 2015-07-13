@@ -708,3 +708,25 @@ img{
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
+
+/*---------------Historial de oferta a las subastas propias----------------*/
+
+.textoNecesidad{
+	margin: 10px;
+	font-size: 16px;
+}
+
+.tituloNecesidad{
+	text-align: center;
+	margin-top: 10px;
+	border-bottom: 1px solid;
+}
+
+.colOfertas-necesidad{
+	width: 40%;
+}
+
+.tablaHOfertas caption{
+	margin-left: 20px;
+	font-weight: bold;
+}

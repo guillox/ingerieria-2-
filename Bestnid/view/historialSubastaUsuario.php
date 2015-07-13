@@ -23,10 +23,25 @@
                     <td><?php echo $r->__GET('fecha_fin'); ?></td>
 <!--                     <td><?php echo $r->__GET('FechaNacimiento'); ?></td> -->
                     <td>
+                    		<?php
+                    			$oferta=new OfertasModel();
+                    			if(!$oferta->ofertaXIdSubasta($r->id)) {?>
                         <a href="?c=subasta&a=vistaNuevaSubasta&id=<?php echo $r->id; ?>">Editar</a>
+                        <?php
+                        	}else {
+                        		echo "<p> Editar </p>";
+                        	}
+                        ?>
                     </td>
                     <td>
+                    	<?php
+                    if(!$oferta->ofertaXIdSubasta($r->id)) {?>
                         <a href="?c=subasta&a=eliminarSubasta&id=<?php echo $r->id; ?>"  onclick="return confirm('¿Está seguro que desea Eliminar está Subasta?');">Eliminar</a>
+							<?php
+                        	}else {
+                        		echo "<p> Eliminar </p>";
+                        	}
+                        ?>                    
                     </td>
                 </tr>
             <?php endforeach; ?>
