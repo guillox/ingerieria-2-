@@ -46,7 +46,7 @@ require_once 'model/categoria.model.php';?>
 					return $dias;
 				}			
 			?>
-			<input type="number" class="form-control" min="15" max="30" name="duracion" value="<?php echo dias_transcurridos($sub->__GET('fecha_inicio'),$sub->__GET('fecha_fin')); ?>" />
+			<input type="number" class="form-control" min="15" max="30" name="duracion" value="<?php echo dias_transcurridos($sub->__GET('fecha_inicio'),$sub->__GET('fecha_fin'))== 0 ? 15 : dias_transcurridos($sub->__GET('fecha_inicio'),$sub->__GET('fecha_fin')) ; ?>" />
 			<!-- <select class="form-control" id="duracion" name="duracion">
 				<option value ="15" <?php echo dias_transcurridos($sub->__GET('fecha_inicio'),$sub->__GET('fecha_fin')) == 15 ? 'selected' : ''; ?>>15 Días</option>
 				<option value ="30" <?php echo dias_transcurridos($sub->__GET('fecha_inicio'),$sub->__GET('fecha_fin')) == 30 ? 'selected' : ''; ?>>30 Días</option>

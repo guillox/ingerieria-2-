@@ -5,6 +5,8 @@ require_once 'controller/subasta.controller.php';
 require_once 'controller/ofertas.controller.php';
 require_once 'controller/comentarios.controller.php';
 require_once 'controller/historialVenta.controller.php';
+require_once 'controller/categoria.controller.php';
+require_once 'controller/notificaciones.controller.php';
 
 
 // Todo esta lógica hara el papel de un FrontController

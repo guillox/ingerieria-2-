@@ -18,6 +18,25 @@ class SubastaModel
 		}
 	}
 
+	public function estaInactivo($id) {
+			try 
+		{
+			$stm = $this->pdo->prepare("SELECT * FROM subasta WHERE subastaID = ? AND inactivo LIKE '%*%'  ");
+			          
+			$stm->execute(array($id));
+			$r = $stm->fetch(PDO::FETCH_OBJ);
+			if($r) {
+				return true;		
+			}else {
+				return false;
+			}
+		}
+		 catch (Exception $e) 
+		{
+			die($e->getMessage());
+		}
+	}
+	
 	public function obtener($id)
 	{
 		try 
@@ -38,6 +57,7 @@ class SubastaModel
 				$sb->__SET('imagen', $r->imagen);
 				$sb->__SET('fecha_inicio',$r->fecha_inicio);
 				$sb->__SET('fecha_fin',$r->fecha_fin);
+				$sb->__SET('puntaje',$r->puntaje);
 			
 				return $sb;		
 			}else {
@@ -56,7 +76,7 @@ class SubastaModel
 		{
 			$result = array();
 
-			$stm = $this->pdo->prepare("SELECT * FROM subasta WHERE descripcion LIKE '%$dato%' OR nombre LIKE '%$dato%' ");
+			$stm = $this->pdo->prepare("SELECT * FROM subasta WHERE inactivo NOT LIKE '%*%'  AND descripcion LIKE '%$dato%' OR nombre LIKE '%$dato%'  ");
 			$stm->execute();
 
 			foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
@@ -71,7 +91,7 @@ class SubastaModel
 				$usr->__SET('imagen', $r->imagen);
 				$usr->__SET('fecha_inicio',$r->fecha_inicio);
 				$usr->__SET('fecha_fin',$r->fecha_fin);
-				
+				$usr->__SET('puntaje',$r->puntaje);
 
 				$result[] = $usr;
 			}
@@ -105,7 +125,7 @@ class SubastaModel
 				$usr->__SET('imagen', $r->imagen);
 				$usr->__SET('fecha_inicio',$r->fecha_inicio);
 				$usr->__SET('fecha_fin',$r->fecha_fin);
-				
+				$usr->__SET('puntaje',$r->puntaje);
 
 				$result[] = $usr;
 			}
@@ -209,7 +229,7 @@ class SubastaModel
 		}
 	}
   
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>AGREGADO PARA CATEGORIA CONTROLLER<<<<<<<<<<<<<<<<<<<<<<<<*/
+       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>AGREGADO PARA CATEGORIA CONTROLLER<<<<<<<<<<<<<<<<<<<<<<<<*/
     /*listar las ultimas subastas agregadas*/
     
     public function listarUltimasSubastas($limite)
@@ -218,7 +238,7 @@ class SubastaModel
 		{
 			$result = array();
 
-			$stm = $this->pdo->prepare("SELECT * FROM subasta ORDER BY subastaID DESC LIMIT $limite");
+			$stm = $this->pdo->prepare("SELECT * FROM subasta WHERE inactivo NOT LIKE '%*%'  ORDER BY subastaID DESC LIMIT $limite");
 			$stm->execute();
 
 			foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
@@ -233,7 +253,7 @@ class SubastaModel
 				$usr->__SET('imagen', $r->imagen);
 				$usr->__SET('fecha_inicio',$r->fecha_inicio);
 				$usr->__SET('fecha_fin',$r->fecha_fin);
-				
+				$usr->__SET('puntaje',$r->puntaje);				
 
 				$result[] = $usr;
 			}
@@ -247,7 +267,7 @@ class SubastaModel
 	}
     
     /* -------filtardo por categoria----------*/
-    	public function listarCategoria($idCategoria,$limite)
+    public function listarCategoria($idCategoria,$limite)
 	{
 		try
 		{
@@ -270,7 +290,7 @@ class SubastaModel
 				$usr->__SET('imagen', $r->imagen);
 				$usr->__SET('fecha_inicio',$r->fecha_inicio);
 				$usr->__SET('fecha_fin',$r->fecha_fin);
-				
+				$usr->__SET('puntaje',$r->puntaje);								
 
 				$result[] = $usr;
 			}
@@ -283,6 +303,107 @@ class SubastaModel
 		}
 	}
     
+    
+     public function listarReport()
+	{
+		try
+		{
+			$result = array();
+
+			$stm = $this->pdo->prepare("SELECT * FROM subasta WHERE inactivo NOT LIKE '%*%' ORDER BY fecha_inicio DESC ");
+			$stm->execute();
+
+			foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
+			{
+				$usr = new Subasta();
+
+				$usr->__SET('id', $r->subastaID);
+				$usr->__SET('usuarioID', $r->usuarioID);
+				$usr->__SET('categoriaID', $r->categoriaID);
+				$usr->__SET('nombre',$r->nombre);
+				$usr->__SET('descripcion', $r->descripcion);
+				$usr->__SET('imagen', $r->imagen);
+				$usr->__SET('fecha_inicio',$r->fecha_inicio);
+				$usr->__SET('fecha_fin',$r->fecha_fin);
+				$usr->__SET('puntaje',$r->puntaje);								
+
+				$result[] = $usr;
+			}
+
+			return $result;
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+    
+     public function listarReportFechas($rango1,$rango2)
+	{
+		try
+		{
+			$result = array();
+
+			$stm = $this->pdo->prepare("SELECT * FROM subasta WHERE fecha_inicio >= ? AND fecha_inicio <= ? AND inactivo NOT LIKE '%*%' ORDER BY fecha_inicio DESC");
+			$stm->execute(array($rango1,$rango2));
+
+			foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
+			{
+				$usr = new Subasta();
+
+				$usr->__SET('id', $r->subastaID);
+				$usr->__SET('usuarioID', $r->usuarioID);
+				$usr->__SET('categoriaID', $r->categoriaID);
+				$usr->__SET('nombre',$r->nombre);
+				$usr->__SET('descripcion', $r->descripcion);
+				$usr->__SET('imagen', $r->imagen);
+				$usr->__SET('fecha_inicio',$r->fecha_inicio);
+				$usr->__SET('fecha_fin',$r->fecha_fin);
+				$usr->__SET('puntaje',$r->puntaje);								
+
+				$result[] = $usr;
+			}
+
+			return $result;
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+
+	public function actualizarPuntaje($id,$valor) {
+		try 
+		{
+			$sql = "UPDATE subasta SET puntaje=?  WHERE subastaID = ?";
+
+			$this->pdo->prepare($sql)
+			     ->execute(
+				array($valor,$id)
+				);
+		} catch (Exception $e) 
+		{
+			die($e->getMessage());
+		}	
+	}
+
+	public function propietario($id)
+	{
+
+        //devuelve el nombre o todo el propietario
+        
+		return $id;
+     }
+
+     
+
+     public function categoria($id)
+	{
+
+        //devuelve el nombre o todo el propietario
+		return $id;
+     }
+
     
 }
 

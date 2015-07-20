@@ -5,7 +5,7 @@
         <div class="pure-u-1-12">
             <div class="subasta">
                 <div class="lineaAbiso">    
-                        <h4>vista por Categorias "<?php echo $_REQUEST['nombre'];?>" </h4>
+                        <h3 style="text-align:center;">Vista por categorias "<?php echo $_REQUEST['nombre'];?>" </h4>
                 </div>
                 <div class="contenedorPrincipal"> 
                     <div style="clear:both;"> </div>
@@ -14,14 +14,14 @@
 <?php
                     if(sizeof($listado) == 0)
                     {
-                        echo"<h4>nose encontraron subastas</h4>";
+                        echo"<h4>Nose encontraron subastas</h4>";
                     }else{
                         foreach($listado as $r):
 ?>
                               
                         <article>
                             <div  class="contenArt">
-                            
+                            <div class="titulo">
                                 <h2> 
                     <?php
                                     if(isset($_SESSION['idUser'])) {
@@ -29,9 +29,9 @@
                                     }else{
                                         echo  "<a class='linkSubasta' href='?c=subasta&a=detalleSubasta&idActual=".$r->__GET('id')."'>". $r->__GET('nombre'). "</a>";
                                     }
-                    ?>
+                    ?>      
                                 </h2>
-
+                            </div>
                                 <?php
                                 echo "<img src=".$r->__GET('imagen').">"
                                 ?>

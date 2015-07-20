@@ -11,8 +11,14 @@ class OfertasController
     }
     
 	public function vistaOfertaExito() {
-		require_once 'view/headerLogueado.php';
+		require_once 	'view/headerLogueado.php';
 			require_once 'view/ofertaConcreta.php';
+    		require_once 'view/footer.php'; 
+	} 
+	
+	public function vistaGanadorElegido() {
+		require_once 	'view/headerLogueado.php';
+			require_once 'view/ganadorElegido.php';
     		require_once 'view/footer.php'; 
 	}    
     
@@ -28,5 +34,20 @@ class OfertasController
 		  $this->model->insertarOferta($of);
 		  header('Location: index.php?c=ofertas&a=vistaOfertaExito');
     }
+    
+    public function cambiarMonto() {
+		$this->model->setMonto($_REQUEST['idOF'],$_POST['monto']) ;   
+		header('Location: index.php?c=usuario&a=vistaHSubasta');
+    }
+    
+    public function eliminarOferta(){
+		$this->model->eliminar($_REQUEST['id']);    
+		header('Location: index.php?c=usuario&a=ofertasActivas');
+	}
+	
+	public function ofertasNogandas($id){
+		return $this->model->ofertasNoGanadoras($id);
+	}
+   
 }
 ?>

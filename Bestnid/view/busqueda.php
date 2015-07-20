@@ -1,9 +1,10 @@
+<link rel="stylesheet" type="text/css" href="view/css/contenedorPr.css">
 <div class="pure-g">
-    <div class="pure-u-1-12">
-     
+    <div class="pure-u-1-12" >
+     <div class="subasta">
         <br /><br />
-	<div class="info-busqueda"><p class="bg-info info-texto">Resultado de búsqueda para&nbsp <?php echo '"'.$_REQUEST['buscar'].'"'; ?><p></div>
-        
+         <div class="lineaAbiso"><h4>Resultado de búsqueda para&nbsp <?php echo '"'.$_REQUEST['buscar'].'"'; ?></h4></div>
+     <div class="contenedorPrincipal">   
 <div style="clear:both;"> </div>
 
     
@@ -16,7 +17,7 @@ Intentá ampliar tu búsqueda con más palabras.</h4>";
 	 foreach($listado as $r): ?>
 	<article >
                 <div class="contenArt">
-    
+                    <div class="titulo">
                     <h2> <?php
                         if(isset($_SESSION['idUser'])) {
                             echo  "<a class='linkSubasta' href='?c=subasta&a=logDetalleSubasta&idActual=".$r->__GET('id')."'>". $r->__GET('nombre'). "</a>";
@@ -25,7 +26,7 @@ Intentá ampliar tu búsqueda con más palabras.</h4>";
                         }
                          ?>
                     </h2>
-                    
+                    </div>
                     <?php
                         echo "<img src=".$r->__GET('imagen').">"
                     ?>
@@ -39,6 +40,7 @@ Intentá ampliar tu búsqueda con más palabras.</h4>";
     <?php endforeach;} ?> 
    
 <div style="clear:both;"> </div> 
-
+         </div>
+         </div>
     </div>
 </div>

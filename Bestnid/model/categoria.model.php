@@ -4,7 +4,6 @@
 class CategoriaModel
 {
 	private $pdo;
-	/*Constructor*/
 	public function __CONSTRUCT()
 	{
 		try
@@ -18,27 +17,55 @@ class CategoriaModel
 			die($e->getMessage());
 		}
 	}
-	/* listado de categoria*/
 	public function listarAll()
 	{
 		try
 		{
 			$result = array();
+
 			$stm = $this->pdo->prepare("SELECT * FROM categoria ");
 			$stm->execute();
+
 			foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
 			{
 				$cat = new Categoria();
+
 				$cat->__SET('id', $r->categoriaID);
 				$cat->__SET('nombre', $r->Nombre);
 				$cat->__SET('descripcion', $r->Descripcion);
+				
 				$result[] = $cat;
 			}
 
 			return $result;
 		}
-		
 		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+	public function obtenerPorID($id)
+	{
+		try 
+		{
+			$stm = $this->pdo->prepare("SELECT * FROM categoria WHERE categoriaID = ? ");
+			          
+
+			$stm->execute(array($id));
+			$r = $stm->fetch(PDO::FETCH_OBJ);
+			if($r) {
+				$cat = new Categoria();
+
+				$cat->__SET('id', $r->categoriaID);
+				$cat->__SET('nombre', $r->Nombre);
+				$cat->__SET('descripcion', $r->Descripcion);
+				
+                return $cat;		
+			}else {
+				return false;
+			}
+		}
+		 catch (Exception $e) 
 		{
 			die($e->getMessage());
 		}

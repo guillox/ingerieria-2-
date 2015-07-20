@@ -59,6 +59,34 @@ class OfertasModel
 		}	
 	}
 	
+	public function obtenerOF($id) {
+			try 
+		{
+			$stm = $this->pdo
+			          ->prepare("SELECT * FROM ofertas WHERE ofertaID = ? ");      
+
+			$stm->execute(array($id));
+			$r = $stm->fetch(PDO::FETCH_OBJ);
+			if($r) {
+				$of=new Ofertas();				
+				
+				$of->__SET('id',$r->ofertaID);				
+				$of->__SET('usuarioID',$r->usuarioID); 
+				$of->__SET('subastaID',$r->subastaID); 
+				$of->__SET('monto',$r->monto);
+				$of->__SET('necesidad',$r->necesidad);
+				$of->__SET('fecha',$r->fecha);
+				return $of ;		
+			}else {
+				return false;
+			}
+		}
+		 catch (Exception $e) 
+		{
+			die($e->getMessage());
+		}	
+	}
+	
 	public function listarIDS($id)
 	{
 		try
@@ -94,23 +122,10 @@ class OfertasModel
 		try 
 		{
 			$stm = $this->pdo->prepare("SELECT * FROM ofertas WHERE ofertaID = ? ");
-			          
-
 			$stm->execute(array($id));
 			$r = $stm->fetch(PDO::FETCH_OBJ);
 			if($r) {
-				$sb = new Subasta();
-
-				$sb->__SET('id', $r->subastaID);
-				$sb->__SET('usuarioID', $r->usuarioID);
-				$sb->__SET('categoriaID', $r->categoriaID);
-				$sb->__SET('nombre',$r->nombre);
-				$sb->__SET('descripcion', $r->descripcion);
-				$sb->__SET('imagen', $r->imagen);
-				$sb->__SET('fecha_inicio',$r->fecha_inicio);
-				$sb->__SET('fecha_fin',$r->fecha_fin);
-			
-				return $sb;		
+				return $r->monto;		
 			}else {
 				return false;
 			}
@@ -122,7 +137,8 @@ class OfertasModel
 	}	
 	
 	public function eliminarAll($id)
-	{
+	{	
+	
 		try 
 		{
 			$sql = "UPDATE ofertas SET 
@@ -139,6 +155,104 @@ class OfertasModel
 			die($e->getMessage());
 		}
 	}
+
+	public function eliminar($id) {
+		try 
+		{
+			$stm = $this->pdo
+			          ->prepare("DELETE FROM ofertas WHERE ofertaID = ?");			          
+
+			$stm->execute(array($id));
+		} catch (Exception $e) 
+		{
+			die($e->getMessage());
+		}		
+	}	
+	
+	public function setMonto($id,$monto) {
+		try 
+		{
+			$sql = "UPDATE ofertas SET 
+						monto		=?
+						
+				    WHERE ofertaID = ?";
+
+			$this->pdo->prepare($sql)
+			     ->execute(
+				array($monto,$id)
+				);
+		} catch (Exception $e) 
+		{
+			die($e->getMessage());
+		}
+	}
+	public function getOfertasActivas($id) {
+		try
+		{
+			$result = array();
+
+			$stm = $this->pdo->prepare("SELECT * FROM ofertas AS of 
+												INNER JOIN subasta AS sb ON of.subastaID=sb.subastaID
+												WHERE of.usuarioID=$id AND sb.inactivo NOT LIKE '%*%' 
+												ORDER BY sb.fecha_fin ASC ");
+			$stm->execute();
+
+			foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
+			{
+				$usr = new Subasta();
+
+				$usr->__SET('id', $r->ofertaID);
+				$usr->__SET('usuarioID', $r->usuarioID);
+				$usr->__SET('subastaID', $r->subastaID);
+				$usr->__SET('monto',$r->monto);
+				$usr->__SET('necesidad', $r->necesidad);
+				$usr->__SET('fecha', $r->fecha);
+				
+				$result[] = $usr;
+			}
+
+			return $result;
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}	
+	}
+	
+	public function ofertasNoGanadoras($id)
+	{
+		try
+		{
+			$result = array();
+
+			$stm = $this->pdo->prepare("SELECT ofertas.ofertaID,ofertas.usuarioID,ofertas.subastaID,ofertas.monto,ofertas.necesidad,ofertas.fecha  
+                    FROM historial_ventas,ofertas 
+                    WHERE NOT historial_ventas.ofertaID = ofertas.ofertaID AND ofertas.usuarioID = $id"
+            );
+			$stm->execute();
+
+			foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
+			{
+				$of = new Ofertas();
+
+				$of->__SET('id', $r->ofertaID);
+				$of->__SET('usuarioID', $r->usuarioID);
+				$of->__SET('subastaID', $r->subastaID);
+				$of->__SET('monto',$r->monto);
+				$of->__SET('necesidad', $r->necesidad);
+				$of->__SET('fecha', $r->fecha);
+				
+				$result[] = $of;
+			}
+
+			return $result;
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+    
 }
 
 /*------------TEST INSERTAR OFERTA----------------*/

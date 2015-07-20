@@ -697,6 +697,10 @@ img{
 	text-align: center;
 }
 
+.content-oferta-concreta p{
+	text-align: center;
+}
+
 .content-oferta-concreta h1,h2{
 	text-align: center;
 }
@@ -729,4 +733,66 @@ img{
 .tablaHOfertas caption{
 	margin-left: 20px;
 	font-weight: bold;
+}
+
+.titulo
+{
+    height: 56px;
+    text-align: center;
+    overflow-y: hidden;
+}
+img{
+    border-radius: 10px;
+}
+
+/*-------------Seccion para calificar subastas------------------*/
+.calificar{
+	text-align: center;
+	margin-top: 30px;
+}
+
+.imgLike{
+	font-size: 50px;
+	margin-left: 30px;
+	margin-right: 30px;
+
+}
+
+.calificar p{
+	margin-top: 15px;
+}
+
+.valorPositivo{
+	font-size: 18px;
+	color: green;
+	font-weight: bold;
+}
+
+.valorNegativo{
+	font-size: 18px;
+	color: red;
+	font-weight: bold;
+}
+
+.act-btn{
+	width: 100%;
+}
+
+.mensaje-op{
+	text-align: center;
+}
+
+/*------------------------------------*/
+
+.secDarBaja{
+	width: 480px;
+	margin: 0 auto;
+	background-color: white;
+	margin-top: 30px;
+	}
+
+/*-----------------------------------------*/
+
+.datosContacto{
+	background-color: white;
 }

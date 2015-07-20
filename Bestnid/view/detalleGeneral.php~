@@ -1,0 +1,50 @@
+<?php
+                //recupera la subasta por id y imprimirlo
+/*---------------detalle es un obj de clase Subasta (usar gets)-------------------*/
+                $detalle=$this->model->obtener($_REQUEST['idActual']);
+            ?>
+<div class="titulo-AM">
+	<h2>
+		Detalles Generales
+	</h2>
+</div>
+<div class="content-detalle">
+		<h2><?php echo $detalle->__GET('nombre'); ?></h2>
+	<section class="content-img">
+		<img src="<?php echo $detalle->__GET('imagen'); ?> " alt="">
+	</section>
+	<section class="content-datos">
+		<p><span class="resaltado">Propietario:</span><?php
+		$UM=new UsuarioModel();
+		$user=$UM->obtenerPorID($detalle->__GET('usuarioID'));
+		echo " ".$user->__GET('nombre');		
+		?> </p>
+		<p><span class="resaltado">Fecha de finalización:</span><?php 
+		$date = date_create($detalle->__GET('fecha_fin'));    		
+		echo " ".date_format($date, 'd-m-Y ');?></p>
+		<p><span class="resaltado">Ganador: </span>
+			<?php
+				$hv=new HistorialVentaModel();
+				$hvDetalle=$hv->obtenerIDS($_REQUEST['idActual']);
+				$of=new OfertasModel();
+				$ofDatos=$of->obtenerOF($hvDetalle->__GET('ofertaID'));
+				$user=$UM->obtenerPorID($ofDatos->__GET('usuarioID'));				
+				echo " ".$user->__GET('nombre')." ".$user->__GET('apellido');
+			?>		
+		</p>
+		<p><span class="resaltado">Necesidad: </span>
+		<?php
+			echo " ".$ofDatos->__GET('necesidad');
+		?>		
+		</p>
+		<p><span class="resaltado">Monto: </span>
+		<?php
+			echo " ".$ofDatos->__GET('monto');
+		?>				
+		</p>
+<!-- Fin del Lightbox -->		
+	</section>
+	<section class="content-desc">
+		<p><?php echo $detalle->__GET('descripcion');?></p>
+	</section>
+</div>

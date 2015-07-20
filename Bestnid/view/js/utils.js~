@@ -46,7 +46,45 @@ function validarNuevoUsuario() {
   function MostrarOcultar(texto)  
 {  
       
-        document.getElementById('necesidad-Completo').innerHTML='<h4 class="modal-title" id="myModalLabel">Necesidad</h4><p class="textoNecesidad">'+texto+'</p>';
+        document.getElementById('necesidad-Completo').innerHTML='<h4 class="modal-title tituloNecesidad" id="myModalLabel">Necesidad</h4><p class="textoNecesidad">'+texto+'</p>';
+    
+} 
+function MostrarOcultar2(texto)  
+{  
+			      
+        document.getElementById('necesidad-Completo').innerHTML='<h4 class="modal-title tituloNecesidad" id="myModalLabel">Datos</h4><p class="textoNecesidad">Email: '+texto+'</p><p class="textoNecesidad">Usuario: '+document.getElementById('nombre').value+'</p>';
     
 }  
+
+  function MostrarDatos(email,nombre)  
+{  
+   		console.log(email) ;  
+        document.getElementById('datosContacto').innerHTML='<h4 class="modal-title tituloNecesidad" id="myModalLabel">DATOS</h4><p class="textoNecesidad">Nombre: </p><p class="textoNecesidad">Em@il: '+email+'</p>';
+    
+}  
+
+function showUser() {
+	str1=document.getElementById("inicioAdmin").value;
+	str2=document.getElementById("finAdmin").value;	
+		    
+    if (str1 == "") {
+        document.getElementById("divPrueba").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("divPrueba").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST","view/reporteUsuarios.php?c=usuario&inicio="+str1+"&fin="+str2+"&control=1",true);
+        xmlhttp.send();
+    }
+}
 

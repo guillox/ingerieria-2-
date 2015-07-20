@@ -1,7 +1,7 @@
 <?php
 require_once 'model/subasta.entidad.php';
 require_once 'model/subasta.model.php';
-
+require_once 'notificaciones.controller.php';
 class SubastaController
 {
 	private $model;
@@ -56,6 +56,12 @@ class SubastaController
     
     }
     
+    public function detalleGeneral() {
+		   	require_once 'view/headerLogueado.php';            
+				require_once 'view/detalleGeneral.php';
+				require_once 'view/footer.php';
+    }
+    
     
       public function logDetalleSubasta(){
 				require_once 'view/headerLogueado.php';   
@@ -80,7 +86,7 @@ class SubastaController
 	    $sub->__SET('imagen',$this->guardarImagen());
 	    
 	    $this->model->altaSubasta($sub);
-	    header('Location: index.php?c=usuario&a=vistaHSubasta');
+	    header('Location: index.php?c=usuario&a=vistaHSub');
     }
     
    public function modificarSubasta() {
@@ -127,7 +133,31 @@ class SubastaController
         header('Location: index.php?c=usuario&a=listarSubasta');
     }
     
+    public function eliminarSubastaAdmin() {
+			$asunto="Subasta Eliminada";			
+			$mensaje="La subasta ha sido eliminada por no cumplir con las reglas establecidad";
+			$notM=new NotificacionesController();
+			$notM->insertarNotificacion($_SESSION['idUser'],$_REQUEST['id'],$asunto,$mensaje);		  
+		  
+		  $this->model->eliminarSubasta($_REQUEST['id']);		  
+		  
+    		header("location: index.php?c=usuario&a=vistaHSubasta");        
+         
+    }
+    
  	public function listarSubasta(){
 				header("location: index.php?c=usuario&a=vistaHSubasta");        
+ 	}
+ 	
+ 	public function sumar() {
+		$puntos=(int) $_REQUEST['puntos']+1;
+		$this->model->actualizarPuntaje($_REQUEST['id'],$puntos); 	
+		header("location: index.php?c=subasta&a=logDetalleSubasta&idActual=".$_REQUEST['id']);
+ 	}
+ 	
+ 	public function restar() {
+ 		$puntos=$_REQUEST['puntos'];
+		$this->model->actualizarPuntaje($_REQUEST['id'],$puntos-1); 	
+		header("location: index.php?c=subasta&a=logDetalleSubasta&idActual=".$_REQUEST['id']);
  	}
 }

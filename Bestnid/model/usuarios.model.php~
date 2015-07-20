@@ -23,7 +23,7 @@ class UsuarioModel
 		{
 			$result = array();
 
-			$stm = $this->pdo->prepare("SELECT * FROM clientes");
+			$stm = $this->pdo->prepare("SELECT * FROM clientes WHERE inactivo NOT LIKE '%*%'");
 			$stm->execute();
 
 			foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
@@ -57,7 +57,7 @@ class UsuarioModel
 		try 
 		{
 			$stm = $this->pdo
-			          ->prepare("SELECT * FROM clientes WHERE usuario = ? OR email = ? AND pasw = ?");
+			          ->prepare("SELECT * FROM clientes WHERE usuario = ? OR email = ? AND pasw = ? AND inactivo NOT LIKE '%*%'");
 			          
 
 			$stm->execute(array($usuario,$usuario,$pasw));
@@ -90,10 +90,10 @@ class UsuarioModel
 		try 
 		{
 			$stm = $this->pdo
-			          ->prepare("SELECT * FROM clientes WHERE usuario = ? OR email = ?");
+			          ->prepare("SELECT * FROM clientes WHERE usuario = ? OR email = ? ");
 			          
 
-			$stm->execute(array($usuario,$usuario,$pasw));
+			$stm->execute(array($usuario,$usuario));
 			$r = $stm->fetch(PDO::FETCH_OBJ);
 			if($r) {
 				$usr = new Usuario();
@@ -123,7 +123,7 @@ class UsuarioModel
 		try 
 		{
 			$stm = $this->pdo
-			          ->prepare("SELECT * FROM clientes WHERE usuario = ? ");      
+			          ->prepare("SELECT * FROM clientes WHERE usuario = ? inactivo NOT LIKE '%*%'");      
 
 			$stm->execute(array($usuario));
 			$r = $stm->fetch(PDO::FETCH_OBJ);
@@ -160,7 +160,7 @@ class UsuarioModel
 				$usr->__SET('pasw',$r->pasw);
 				$usr->__SET('nombreUsuario',$r->usuario);
 				$usr->__SET('nro_tarjeta',$r->nro_tarjeta);
-			
+			   $usr->__SET('admin',$r->admin);
 				return $usr;		
 			}else {
 				return false;
@@ -172,14 +172,19 @@ class UsuarioModel
 		}
 	}	
 	
-	public function eliminar($id)
+	public function eliminar($id,$user)
 	{
 		try 
 		{
-			$stm = $this->pdo
-			          ->prepare("DELETE FROM clientes WHERE clientesID = ?");			          
+			$sql = "UPDATE clientes SET 
+						inactivo		=?,
+						usuario		=?
+				    WHERE clientesID = ?";
 
-			$stm->execute(array($id));
+			$this->pdo->prepare($sql)
+			     ->execute(
+				array('*','**'.$user.'**',$id)
+				);
 		} catch (Exception $e) 
 		{
 			die($e->getMessage());
@@ -214,6 +219,109 @@ class UsuarioModel
 		}
 	}
 	
+	public function modificar(Usuario $data) {
+	try 
+		{
+			$sql = "UPDATE clientes SET 
+						nombre			=?,
+						apellido			=?,
+						email				=?,
+						fecha_nac		=?,
+						nro_tarjeta		=?
+						
+				    WHERE clientesID = ?";
+
+			$this->pdo->prepare($sql)
+			     ->execute(
+				array(
+					$data->__GET('nombre'), 
+					$data->__GET('apellido'), 
+					$data->__GET('email'),
+					$data->__GET('fecha_nac'),
+					$data->__GET('nro_tarjeta'),
+					$data->__GET('id')
+					)
+				);
+		} catch (Exception $e) 
+		{
+			die($e->getMessage());
+		}	
+	}
+	
+	public function compararEmail($id,$email) {
+		try 
+		{
+			$stm = $this->pdo
+			          ->prepare("SELECT * FROM clientes WHERE clientesID = ? ");
+			          
+
+			$stm->execute(array($id));
+			$r = $stm->fetch(PDO::FETCH_OBJ);
+			if($r) {
+				return $r->email==$email;		
+			}
+		}
+		 catch (Exception $e) 
+		{
+			die($e->getMessage());
+		}	
+	}
+	/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<recportes Admin<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/   
+    public function listarRagoUsuarios($rango1,$rango2)
+	{
+		try
+		{
+
+			$result = array();
+
+			$stm = $this->pdo->prepare("SELECT * FROM clientes WHERE fecha_registro >= ? AND fecha_registro <= ? WHERE inactivo NOT LIKE '%*%'");
+			          
+
+			$stm->execute(array($rango1,$rango2));
+
+			foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
+			{
+				$usr = new Usuario();
+
+				$usr->__SET('id', $r->clientesID);
+				$usr->__SET('nombre', $r->nombre);
+				$usr->__SET('apellido', $r->apellido);
+				$usr->__SET('email',$r->email);
+				$usr->__SET('fecha_registro', $r->fecha_registro);
+				$usr->__SET('fecha_nac', $r->fecha_nac);
+				$usr->__SET('pasw',$r->pasw);
+				$usr->__SET('nombreUsuario',$r->usuario);
+				$usr->__SET('nro_tarjeta',$r->nro_tarjeta);
+				
+
+				$result[] = $usr;
+			}
+
+			return $result;
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+   
+	public function propietario2($id)
+    {
+        try{
+
+            $stm = $this->pdo->prepare("SELECT * FROM clientes WHERE clientesID = ?");
+
+           	$stm->execute(array($id));
+           	$r= $stm->fetch(PDO::FETCH_OBJ);
+           	return $r->nombre;
+        }
+        catch(Exception $e)
+        {
+            die($e->getMessage());
+        }
+
+     }
+		
 		
 	
 }

@@ -26,7 +26,7 @@ class HistorialVentaController
 		  $sb->eliminarSubasta($_REQUEST['idS']);		  
 		  
 		  $this->model->insertarOferta($hv);
-		  header('Location: index.php?c=ofertas&a=vistaOfertaExito');
+		  header('Location: index.php?c=ofertas&a=vistaGanadorElegido');
     }
     
     private function enviarEmail($destino) {

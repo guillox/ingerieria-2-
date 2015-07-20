@@ -18,7 +18,8 @@
             	$hSubasta=new SubastaModel();
             	foreach($hSubasta->listarHS($_SESSION['idUser']) as $r): ?>
                 <tr>
-                    <td><?php echo $r->__GET('nombre'); ?></td>
+                	
+                    <td><?php echo  "<a href='?c=subasta&a=logDetalleSubasta&idActual=".$r->__GET('id')."'>". $r->__GET('nombre'). "</a>"; ?></td>
                     <td><?php echo $r->__GET('fecha_inicio'); ?></td>
                     <td><?php echo $r->__GET('fecha_fin'); ?></td>
 <!--                     <td><?php echo $r->__GET('FechaNacimiento'); ?></td> -->

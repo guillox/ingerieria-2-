@@ -8,6 +8,7 @@ class Subasta{
 	private $imagen;
 	private $fecha_inicio;
 	private $fecha_fin;
+	private $puntaje;
 	
 	public function __GET($k){ return $this->$k; }
 	public function __SET($k, $v){ return $this->$k = $v; }

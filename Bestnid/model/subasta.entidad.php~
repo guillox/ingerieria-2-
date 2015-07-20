@@ -1,5 +1,5 @@
 <?php
-class subasta{
+class Subasta{
 	private $id;
 	private $usuarioID;
 	private $categoriaID;
@@ -8,6 +8,7 @@ class subasta{
 	private $imagen;
 	private $fecha_inicio;
 	private $fecha_fin;
+	private $puntaje
 	
 	public function __GET($k){ return $this->$k; }
 	public function __SET($k, $v){ return $this->$k = $v; }

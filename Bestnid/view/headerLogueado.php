@@ -31,9 +31,9 @@ session_start();
 
 		<a href="?c=usuario&a=listarSubasta" class="logueado"><img src="view/img/icono-usuario.png" class="img-login">&nbspBienvenido <?php echo $_SESSION['username']?></a><br />
 		<a href="?c=usuario&a=logout" class="cerrarSesion">Cerrar Sesion</a>
-
+	
 <!-- 	Menu de Navegacion -->
-
+		
 		<nav class="navbar navbar-default">
   			<div class="container-fluid">
     		<!-- Brand and toggle get grouped for better mobile display -->
@@ -79,8 +79,8 @@ session_start();
                                 
 		      				</ul>
         				</li>
-        				<li><a href="ayuda.html">Ayuda</a></li>
-        				<li><a href="contacto.html">Contacto</a></li>
+        				<li><a href="?c=usuario&a=vistaAyudaL">Ayuda</a></li>
+        				<li><a href="?c=usuario&a=vistaContacto">Contacto</a></li>
                         
         				<li><a href="?c=subasta&a=vistaNuevaSubasta">Subastar</a></li>
       				</ul>

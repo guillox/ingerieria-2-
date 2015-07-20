@@ -4,6 +4,7 @@ class Usuario
 	private $id;
 	private $nombre;
 	private $apellido;
+	private $email;
 	private $fecha_nac;
 	private $fecha_registro;
 	private $nro_tarjeta;

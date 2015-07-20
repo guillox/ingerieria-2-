@@ -11,7 +11,7 @@
         <div class="pure-u-1-12">
             <div class="subasta">
             <div class="lineaAbiso">    
-                 <h4>ultimas subasta agregadas</h4>
+                 <h3 style="text-align:center;">Ultimas subasta agregadas</h3>
                 </div>    
                 <div class="contenedorPrincipal"> 
                     
@@ -21,14 +21,14 @@
 <?php
                     if(sizeof($listado) == 0)
                     {
-                        echo"<p>nose encuentran subastas</p>";
+                        echo"<p>Nose encuentran subastas</p>";
                     }else{
                         foreach($listado as $r):
 ?>
                               
                         <article>
                             <div  class="contenArt">
-                            
+                            <div class="titulo">
                                 <h2> 
                     <?php
                                     if(isset($_SESSION['idUser'])) {
@@ -38,7 +38,7 @@
                                     }
                     ?>
                                 </h2>
-
+                            </div>  
                                 <?php
                                 echo "<img src=".$r->__GET('imagen').">"
                                 ?>

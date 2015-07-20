@@ -1,4 +1,5 @@
 <?php
+require_once 'model/ofertas.model.php';
                 //recupera la subasta por id y imprimirlo
 /*---------------detalle es un obj de clase Subasta (usar gets)-------------------*/
                 $detalle=$this->model->obtener($_REQUEST['idActual']);
@@ -22,7 +23,21 @@
 		<p><span class="resaltado">Fecha de finalización:</span><?php 
 		$date = date_create($detalle->__GET('fecha_fin'));    		
 		echo " ".date_format($date, 'd-m-Y ');?></p>
-		<?php if(isset($_SESSION['idUser']) && $_SESSION['idUser']!=$detalle->__GET('usuarioID')) { ?>
+		<?php if(isset($_SESSION['idUser']) && $_SESSION['idUser']!=$detalle->__GET('usuarioID')) {	 
+			$ofModel=new OfertasModel();			
+			if($ofModel->sePuedeOfertar($_SESSION['idUser'],$detalle->__GET('id'))) {	
+		?>		
+
+		<div class="calificar">
+			<h4>Califica este producto</h4>
+			<a href="?c=subasta&a=sumar&id=<?php echo $detalle->__GET('id'); ?>&puntos=<?php echo $detalle->__GET('puntaje'); ?>"><span class="glyphicon glyphicon-thumbs-up imgLike" aria-hidden="true"></span></a>
+			<a href="?c=subasta&a=restar&id=<?php echo $detalle->__GET('id'); ?>&puntos=<?php echo $detalle->__GET('puntaje'); ?>"><span class="glyphicon glyphicon-thumbs-down imgLike" aria-hidden="true" ></span></a>
+			<p><span class="resaltado">Puntaje Actual:</span>
+			<span class="<?php echo $detalle->__GET('puntaje') > 0 ? 'valorPositivo' : 'valorNegativo'; ?> ">				
+			<?php echo $detalle->__GET('puntaje') > 0 ? " +".$detalle->__GET('puntaje') : $detalle->__GET('puntaje') ; ?></span></p>
+		</div>		
+		
+
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Ofertar</button>
 <!-- Comienzo del Lightbox -->		
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -57,7 +72,15 @@
     </div>
   </div>
 </div>
-	<?php } ?>
+	<?php }else { ?>
+				<p><span class="resaltado">Usted ya oferto por este producto</span></p>
+	<?php } }else { ?>
+	<div class="calificar">
+			<p><span class="resaltado">Puntaje Actual:</span>
+			<span class="<?php echo $detalle->__GET('puntaje') > 0 ? 'valorPositivo' : 'valorNegativo'; ?> ">				
+			<?php echo $detalle->__GET('puntaje') > 0 ? " +".$detalle->__GET('puntaje') : $detalle->__GET('puntaje') ; ?></span></p>
+		</div>		
+<?php	}?>
 <!-- Fin del Lightbox -->		
 	</section>
 	<section class="content-desc">

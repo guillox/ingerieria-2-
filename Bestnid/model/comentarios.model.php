@@ -29,7 +29,7 @@ class ComentariosModel
 			$result = array();
             
             //prepara la consulta
-			$stm = $this->pdo->prepare("SELECT * FROM comentarios WHERE subastaID = ? ");
+			$stm = $this->pdo->prepare("SELECT * FROM comentarios WHERE subastaID = ? ORDER BY comentariosID DESC ");
             //ejecuta la consulta mysql
 			$stm->execute(array($idSubasta));
 
@@ -94,7 +94,7 @@ class ComentariosModel
         { 
             $sql ="UPDATE comentarios SET respuesta='$resp' WHERE comentariosID = '$respID'";
 
-            $this->pdo->prepare($sql)->execute(printf(' RESpuesta agregado<br/>'));
+            $this->pdo->prepare($sql)->execute();
 
         }catch (Exception $e) 
 		{
@@ -165,5 +165,34 @@ class ComentariosModel
 
     }
    	
+	 public function obtener($id)
+	{
+		try 
+        {
+			$stm = $this->pdo->prepare("SELECT * FROM comentarios WHERE comentariosID = ? ");
+			          
+			$stm->execute(array($id));
+			$r = $stm->fetch(PDO::FETCH_OBJ);   	
+            if($r) {
+                $com= new Comentarios();
+                
+				$com->__SET('id', $r->comentariosID);
+				$com->__SET('usuarioID', $r->usuarioID);
+				$com->__SET('subastaID', $r->subastaID);
+				$com->__SET('fechaPregunta',$r->fechaPregunta);
+				$com->__SET('pregunta', $r->pregunta);
+				$com->__SET('fechaRespuesta', $r->fechaRespuesta);
+				$com->__SET('respuesta',$r->respuesta);
 	
+                return $com;
+            }else {
+				return false;
+			}
+            
+	    }
+        catch (Exception $e) 
+		{
+			die($e->getMessage());
+		}
+	}
 }

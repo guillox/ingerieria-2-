@@ -29,6 +29,15 @@ class HistorialVentaController
 		  header('Location: index.php?c=ofertas&a=vistaOfertaExito');
     }
     
+    private function enviarEmail($destino) {
+		$email_to=$destino;
+		$email_subject="Felicitaciones!! Has Ganado!";
+		$email_message="Usted ha ganado la subasta!! (PRUEBA)";
+		
+		$headers=  'From: '.$email_from."\r\n".'Reply-To: '.$email_from."\r\n" .'X-Mailer: PHP/' . phpversion();
+		@mail($email_to, $email_subject, $email_message, $headers);
+		
+    }
     
 }
 ?>
